@@ -1,0 +1,9 @@
+.sub-menu {
+    height: 60px;
+    background: #fff;
+    border-bottom: 1px solid #d5d5d5;
+}
+
+.sub-menu .nav-link {
+    line-height: 45px;
+}
