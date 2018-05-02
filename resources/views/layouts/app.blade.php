@@ -86,6 +86,10 @@
                     <a class="nav-link" href="#">Products</a>
                     <a class="nav-link" href="#">Clients</a>
                     <a class="nav-link" href="#">FAQ</a>
+                     @role('Admin')
+                    <a class="nav-link" href="{{ route('users.index') }}">Manage Users</a>
+
+                    @endrole
                 </div>
             </div>
         </nav>
