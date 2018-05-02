@@ -83,7 +83,7 @@
                     <a class="nav-link" href="#">Home</a>
                     <a class="nav-link" href="#">About</a>
                     <a class="nav-link" href="#">Login</a>
-                    <a class="nav-link" href="#">Products</a>
+                    <a class="nav-link" href="{{ url('/newequipment') }}">Products</a>
                     <a class="nav-link" href="#">Clients</a>
                     <a class="nav-link" href="#">FAQ</a>
                      @role('Admin')
