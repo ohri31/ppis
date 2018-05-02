@@ -12,6 +12,10 @@ class User extends Authenticatable
     use Notifiable;
     use HasRoles;
 
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
 
     /**
      * The attributes that are mass assignable.
