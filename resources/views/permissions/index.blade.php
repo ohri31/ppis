@@ -4,6 +4,8 @@
 @section('title', '| Permissions')
 
 @section('content')
+@can ('CanManageUsers')
+
 <div class="container">
     <div class="row justify-content-center">
 <div class="col-lg-10 col-lg-offset-1">
@@ -46,5 +48,5 @@
 </div>
 </div>
 </div>
-
+@endcan
 @endsection

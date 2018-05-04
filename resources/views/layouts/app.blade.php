@@ -80,21 +80,35 @@
         <nav class="nav sub-menu">
             <div class="container">
                 <div class="row">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="{{ route('home') }}">Home</a>
                     <a class="nav-link" href="#">About</a>
+                    @if (!Auth::check())
                     <a class="nav-link" href="#">Login</a>
+                    @endif
                     <a class="nav-link" href="{{ url('/newequipment') }}">Products</a>
                     <a class="nav-link" href="#">Clients</a>
                     <a class="nav-link" href="#">FAQ</a>
                      @role('Admin')
                     <a class="nav-link" href="{{ route('users.index') }}">Manage Users</a>
-
                     @endrole
                 </div>
             </div>
         </nav>
+<br>
+        @if(Session::has('flash_message'))
+           <div class="container">
+               <div class="alert alert-success"><em> {!! session('flash_message') !!}</em>
+               </div>
+           </div>
+       @endif
 
         <main class="py-4">
+          <div class="row">
+           <div class="col-md-8 col-md-offset-2">
+               @include ('errors.list') {{-- Including error file --}}
+           </div>
+       </div>
+
             @yield('content')
         </main>
     </div>

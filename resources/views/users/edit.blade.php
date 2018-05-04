@@ -3,8 +3,9 @@
 @extends('layouts.app')
 
 @section('title', '| Edit User')
-
 @section('content')
+@can ('CanManageUsers')
+
 <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-6">
@@ -58,4 +59,5 @@
 </div>
 </div>
 </div>
+@endcan
 @endsection

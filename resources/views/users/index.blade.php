@@ -1,9 +1,10 @@
 {{-- \resources\views\users\index.blade.php --}}
 @extends('layouts.app')
-
 @section('title', '| Users')
 
 @section('content')
+@can ('CanManageUsers')
+
 <div class="container">
     <div class="row justify-content-center">
 <div class="col-lg-10 col-lg-offset-1">
@@ -16,6 +17,7 @@
             <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Surname</th>
                     <th>Email</th>
                     <th>Date/Time Added</th>
                     <th>User Roles</th>
@@ -28,13 +30,14 @@
                 <tr>
 
                     <td>{{ $user->name }}</td>
+                    <td>{{ $user->surname }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->created_at->format('F d, Y h:ia') }}</td>
                     <td>{{  $user->roles()->pluck('name')->implode(' ') }}</td>{{-- Retrieve array of roles associated to a user and convert to string --}}
                     <td>
                       <div class="btn-group">
 
-                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-info" style="margin-right: 6px;">Edit</a>
+                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-info" style="margin-right: 6px; float: left;">Edit</a>
 
                     {!! Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user->id] ]) !!}
                     {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
@@ -52,6 +55,6 @@
 
 </div>
 </div>
-</div
-
+</div>
+@endcan
 @endsection

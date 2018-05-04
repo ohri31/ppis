@@ -4,6 +4,8 @@
 @section('title', '| Add User')
 
 @section('content')
+@can ('CanManageUsers')
+
 <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-6">
@@ -20,7 +22,12 @@
         {{ Form::label('name', 'Name') }}
         {{ Form::text('name', '', array('class' => 'form-control')) }}
     </div>
-  
+
+    <div class="form-group">
+        {{ Form::label('surname', 'Surame') }}
+        {{ Form::text('surname', '', array('class' => 'form-control')) }}
+    </div>
+
     <div class="form-group">
         {{ Form::label('email', 'Email') }}
         {{ Form::email('email', '', array('class' => 'form-control')) }}
@@ -55,4 +62,5 @@
 </div>
 </div>
 </div>
+@endcan
 @endsection

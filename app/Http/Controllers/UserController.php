@@ -16,9 +16,9 @@ use Session;
 
 class UserController extends Controller {
 
-/*  public function __construct() {
+ public function __construct() {
         $this->middleware(['auth', 'isAdmin']); //isAdmin middleware lets only users with a //specific permission permission to access these resources
-    } */
+    } 
 
     /**
     * Display a listing of the resource.
@@ -56,7 +56,7 @@ class UserController extends Controller {
           'password' => 'required|string|min:6|confirmed',
         ]);
 
-        $user = User::create($request->only('email', 'name', 'password')); //Retrieving only the email and password data
+        $user = User::create($request->only('email', 'name', 'password','surname')); //Retrieving only the email and password data
 
         $roles = $request['roles']; //Retrieving the roles field
     //Checking if a role was selected
