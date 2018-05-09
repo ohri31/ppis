@@ -14,14 +14,14 @@ class ClearanceMiddleware {
      * @return mixed
      */
     public function handle($request, Closure $next) {
-        if (Auth::user()->hasPermissionTo('Administer roles & permissions')) //If user has this //permission
+  /*      if (Auth::user()->hasPermissionTo('CanManageUsers')) //If user has this //permission
     {
             return $next($request);
-        }
+        } */
 
-        if ($request->is('posts/create'))//If user is creating a post
+        if ($request->is('equipment/create'))//If user is creating a post
          {
-            if (!Auth::user()->hasPermissionTo('Create Post'))
+            if (!Auth::user()->hasPermissionTo('CanAddEquipment'))
          {
                 abort('401');
             }
@@ -30,9 +30,10 @@ class ClearanceMiddleware {
             }
         }
 
-        if ($request->is('posts/*/edit')) //If user is editing a post
+
+    if ($request->is('equipment/*/edit')) //If user is editing a post
          {
-            if (!Auth::user()->hasPermissionTo('Edit Post')) {
+            if (!Auth::user()->hasPermissionTo('CanAddEquipment')) {
                 abort('401');
             } else {
                 return $next($request);
@@ -41,7 +42,7 @@ class ClearanceMiddleware {
 
         if ($request->isMethod('Delete')) //If user is deleting a post
          {
-            if (!Auth::user()->hasPermissionTo('Delete Post')) {
+            if (!Auth::user()->hasPermissionTo('CanAddEquipment')) {
                 abort('401');
             }
          else
@@ -52,4 +53,5 @@ class ClearanceMiddleware {
 
         return $next($request);
     }
+
 }

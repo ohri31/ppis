@@ -85,7 +85,7 @@
                     @if (!Auth::check())
                     <a class="nav-link" href="#">Login</a>
                     @endif
-                    <a class="nav-link" href="{{ url('/newequipment') }}">Products</a>
+                    <a class="nav-link" href="{{ route('equipment.index') }}">Products</a>
                     <a class="nav-link" href="#">Clients</a>
                     <a class="nav-link" href="#">FAQ</a>
                      @role('Admin')
