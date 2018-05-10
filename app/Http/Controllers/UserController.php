@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\User;
 use Auth;
+use DB;
 
 //Importing laravel-permission models
 use Spatie\Permission\Models\Role;
@@ -118,9 +119,20 @@ class UserController extends Controller {
         $user->fill($input)->save();
 
         if (isset($roles)) {
+            // save the roles history
+
+            foreach($user->fetchRolesAsArray() as $item) {
+                DB::table('history')
+                    ->insert([
+                        'user_id' => $user->id,
+                        'role_id' => $item,
+                        "created_at" =>  \Carbon\Carbon::now(),
+                        "updated_at" => \Carbon\Carbon::now()
+                    ]);
+            }
+
             $user->roles()->sync($roles);  //If one or more role is selected associate user to roles
-        }
-        else {
+        } else {
             $user->roles()->detach(); //If no role is selected remove exisiting role associated to a user
         }
         return redirect()->route('users.index')
