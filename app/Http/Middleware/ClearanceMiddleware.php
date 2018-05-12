@@ -14,9 +14,38 @@ class ClearanceMiddleware {
      * @return mixed
      */
     public function handle($request, Closure $next) {
+  /*      if (Auth::user()->hasPermissionTo('CanManageUsers')) //If user has this //permission
+    {
+            return $next($request);
+        } */
 
-        //If user is creating a post
-        if($request->is('equipment/create')) {
+        if ($request->is('testrequests/create'))//If user is creating a post
+         {
+            if (!Auth::user()->hasPermissionTo('CanSendRequestsForTesting'))
+         {
+                abort('401');
+            }
+         else {
+                return $next($request);
+            }
+        }
+
+
+
+        if ($request->is('equipment/create'))//If user is creating a post
+         {
+            if (!Auth::user()->hasPermissionTo('CanAddEquipment'))
+         {
+                abort('401');
+            }
+         else {
+                return $next($request);
+            }
+        }
+
+
+    if ($request->is('equipment/*/edit')) //If user is editing a post
+         {
             if (!Auth::user()->hasPermissionTo('CanAddEquipment')) {
                 abort('401');
             } else {
@@ -24,26 +53,20 @@ class ClearanceMiddleware {
             }
         }
 
-        // If the user is editing the equipment item
-        if($request->is('equipment/*/edit')) {
-            if(!Auth::user()->hasPermissionTo('CanAddEquipment')) {
+        if ($request->isMethod('Delete')) //If user is deleting a post
+         {
+            if (!Auth::user()->hasPermissionTo('CanAddEquipment')) {
                 abort('401');
-            } else {
+            }
+         else
+         {
                 return $next($request);
             }
         }
 
-        //If user is deleting an equioment item
-        if($request->isMethod('Delete')) {
-            if(!Auth::user()->hasPermissionTo('CanAddEquipment')) {
-                abort('401');
-            }
-        } else {
-            return $next($request);  
-        }
-
-        // default return the next request in queue    
         return $next($request);
     }
+
+
 
 }

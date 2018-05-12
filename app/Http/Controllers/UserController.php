@@ -19,7 +19,7 @@ class UserController extends Controller {
 
  public function __construct() {
         $this->middleware(['auth', 'isAdmin']); //isAdmin middleware lets only users with a //specific permission permission to access these resources
-    } 
+    }
 
     /**
     * Display a listing of the resource.
@@ -120,12 +120,13 @@ class UserController extends Controller {
 
         if (isset($roles)) {
             // save the roles history
-
+            $admin_id = \Auth::user()->id;
             foreach($user->fetchRolesAsArray() as $item) {
                 DB::table('history')
                     ->insert([
                         'user_id' => $user->id,
                         'role_id' => $item,
+                        'admin_id'=> $admin_id,
                         "created_at" =>  \Carbon\Carbon::now(),
                         "updated_at" => \Carbon\Carbon::now()
                     ]);

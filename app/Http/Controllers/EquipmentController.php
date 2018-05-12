@@ -11,8 +11,8 @@ class EquipmentController extends Controller
   {
 
     public function __construct() {
-          $this->middleware(['auth', 'clearance'])->except('index');
-      }
+           $this->middleware(['auth', 'clearance']); //isAdmin middleware lets only users with a //specific permission permission to access these resources
+       }
 
     /**
     * Display a listing of the resource.
@@ -100,7 +100,7 @@ class EquipmentController extends Controller
       $equipment = Equipment::findOrFail($id);
     //Validate name and permission fields
         $this->validate($request, [
-            'name'=>'required|max:10|unique:equipment ,name,'.$id,
+            'name'=>'required|max:10|unique:equipment',
             'description',
             'equipment_type' =>'required',
         ]);
