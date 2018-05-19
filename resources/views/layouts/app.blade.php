@@ -45,7 +45,7 @@
                         @guest
                             <li>
                                 <a class="nav-link" href="{{ route('login') }}">
-                                    <i class="fas fa-user"></i> {{ __('Login') }}
+                                    <i class="fa fa-user"></i> {{ __('Login') }}
                                 </a>
                             </li>
                             <li>
@@ -60,9 +60,14 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ url('profile') }}">
+                                        <i class="fa fa-user"></i>
+                                         My profile
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
+                                        <i class="fas fa-sign-out-alt"></i>
                                         {{ __('Logout') }}
                                     </a>
 
@@ -91,9 +96,9 @@
                      @role('Admin')
                     <a class="nav-link" href="{{ route('users.index') }}">Manage Users</a>
                     @endrole
-
+                    @if (Auth::check())
                     <a class="nav-link" href="{{ route('testrequests.index') }}">Test Requests</a>
-
+                    @endif
                 </div>
             </div>
         </nav>
