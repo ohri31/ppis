@@ -16,6 +16,7 @@ class AddFieldsForRegistraiton extends Migration
         Schema::table('users', function (Blueprint $table) {
             //
             $table->string('surname');
+            $table->unsignedInteger('approved')->nullable();
         });
     }
 

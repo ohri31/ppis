@@ -96,8 +96,10 @@
                      @role('Admin')
                     <a class="nav-link" href="{{ route('users.index') }}">Manage Users</a>
                     @endrole
-                    @if (Auth::check())
+                    @if (Auth::user()->roles()->pluck('name')[0]!='Admin')
+                    
                     <a class="nav-link" href="{{ route('testrequests.index') }}">Test Requests</a>
+                    
                     @endif
                 </div>
             </div>

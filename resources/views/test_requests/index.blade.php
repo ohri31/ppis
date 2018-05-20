@@ -33,7 +33,9 @@
                     <td>{{ $tr->name }}</td>
                     <td>{{ $tr->description }}</td>
                     <td>{{ $tr->equipment->name}}</td>
+                    @if($tr->user->company_name)
                     <td>{{ $tr->user->company_name}}</td>
+                    @endif
                     <td>{{ $tr->status->name}}</td>
                     <td style="text-align:center;">
                     @if($tr->approved == 1)

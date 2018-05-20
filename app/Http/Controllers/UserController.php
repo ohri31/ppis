@@ -28,8 +28,17 @@ class UserController extends Controller {
     */
     public function index() {
     //Get all users and pass it to the view
-        $users = User::all();
+        $users = User::all()->where('approved','!=', 0);
         return view('users.index')->with('users', $users);
+    }
+    /**
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function approve(){
+        $users = User::all()->where('approved','=', 0);
+        return view('users.approve')->with('users', $users);  
     }
 
     /**
@@ -68,6 +77,9 @@ class UserController extends Controller {
             $user->assignRole($role_r); //Assigning role to user
             }
         }
+        //admin kreira testere, menadzment itd, oni su odmah approved
+        $user->approved = 1;
+        $user->save();
     //Redirect to the users.index view and display message
         return redirect()->route('users.index')
             ->with('flash_message',
@@ -97,7 +109,42 @@ class UserController extends Controller {
         return view('users.edit', compact('user', 'roles')); //pass user and roles data to view
 
     }
+/**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function approved( $id) {
 
+        $user = User::findOrFail($id);
+  
+          $user->approved = 1;
+ 
+          $user->save();
+  
+          return redirect()->route('approve')
+              ->with('flash_message',
+               'Company '. $user->company_name.' approved!');
+      }
+      /**
+       * Update the specified resource in storage.
+       *
+       * @param  int  $id
+       * @return \Illuminate\Http\Response
+       */
+      public function declined($id) {
+  
+        $user = User::findOrFail($id);
+  
+          $user->approved = 3;
+ 
+          $user->save();
+  
+          return redirect()->route('approve')
+              ->with('flash_message',
+               'Company '. $user->company_name.' declined!');
+      }
     /**
     * Update the specified resource in storage.
     *

@@ -27,3 +27,7 @@ Route::resource('testrequests', 'TestRequestController');
 Route::put('testrequestsdeclined/{id}', 'TestRequestController@declined')->name('testrequests.declined');
 Route::put('testrequestsapproved/{id}', 'TestRequestController@approved')->name('testrequests.approved');
 Route::get('/profile', ['as' => 'profile', 'uses' => 'HomeController@profile']);
+Route::put('usersdeclined/{id}', 'UserController@declined')->name('users.declined');
+Route::put('usersapproved/{id}', 'UserController@approved')->name('users.approved');
+Route::get('/approve', ['as' => 'approve', 'uses' => 'UserController@approve']);
+
