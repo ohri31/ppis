@@ -93,13 +93,11 @@
                     <a class="nav-link" href="{{ route('equipment.index') }}">Products</a>
                     <a class="nav-link" href="#">Clients</a>
                     <a class="nav-link" href="#">FAQ</a>
-                     @role('Admin')
-                    <a class="nav-link" href="{{ route('users.index') }}">Manage Users</a>
-                    @endrole
-                    @if (Auth::user()->roles()->pluck('name')[0]!='Admin')
-                    
+                    @if (Auth::check())
+                    @if(Auth::user()->hasRole('Admin'))                    
                     <a class="nav-link" href="{{ route('testrequests.index') }}">Test Requests</a>
-                    
+                    <a class="nav-link" href="{{ route('users.index') }}">Manage Users</a>
+                    @endif
                     @endif
                 </div>
             </div>
