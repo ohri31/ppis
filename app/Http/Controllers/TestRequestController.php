@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\TestRequest;
 use App\Equipment;
 use App\TestRequestsStatus;
+use App\ExpectedResult;
 use Auth;
 use DB;
 
@@ -45,7 +46,8 @@ class TestRequestController extends Controller
      */
     public function create() {
       $equipment = Equipment::pluck('name', 'id');
-      return view('test_requests.create')->with('equipment', $equipment);
+      $expectedResults=[];
+      return view('test_requests.create', compact('equipment', 'expectedResults'));
     }
 
     /**
@@ -72,14 +74,27 @@ class TestRequestController extends Controller
         $test_request->equipment_id = $equipment;
         $test_request->user_id = \Auth::user()->id;
 
-
         $test_request->save();
 
+        $flash_message = 'Test request '.   $test_request->name.' added!';
 
-        return redirect()->route('testrequests.index')
-            ->with('flash_message',
-             'Test request'.   $test_request->name.' added!');
+        return redirect()->action('ExpectedResultController@create', compact('test_request', 'flash_message'));
     }
+
+       //
+    /**
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function added() {
+        //Get all users and pass it to the view
+        $rola = Auth::user()->roles()->pluck('name')[0];
+        $user_id = Auth::user()->id;
+    
+            return view('test_requests.added');
+        }
+    
 
     /**
      * Display the specified resource.
