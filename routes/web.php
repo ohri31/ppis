@@ -25,6 +25,8 @@ Route::resource('equipment', 'EquipmentController');
 Route::resource('equipmenttypes', 'EquipmentTypeController');
 Route::resource('testrequests', 'TestRequestController');
 Route::resource('expectedresults', 'ExpectedResultController');
+Route::resource('testreports', 'TestReportController');
+
 Route::put('testrequestsdeclined/{id}', 'TestRequestController@declined')->name('testrequests.declined');
 Route::put('testrequestsapproved/{id}', 'TestRequestController@approved')->name('testrequests.approved');
 Route::get('/profile', ['as' => 'profile', 'uses' => 'HomeController@profile']);

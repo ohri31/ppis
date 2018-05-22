@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class TestRequest extends Model
 {
     //
+    protected $table = "test_request";
+
+    protected $primaryKey = "id";
+
     protected $fillable = [
         'name', 'description' ,'equipment_id', 'user_id', 'status_id', 'approved', 'approvedby_id'];
 
@@ -14,6 +18,7 @@ class TestRequest extends Model
             {
                 return $this->belongsTo('App\Equipment', 'equipment_id');
             }
+            
         public function user()
             {
                 return $this->belongsTo('App\User', 'user_id');

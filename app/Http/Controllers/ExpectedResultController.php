@@ -23,9 +23,9 @@ class ExpectedResultController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        echo "OK";
         $id = request()->get('test_request');
-        $test_request = TestRequest::where('id', '=', $id)->firstOrFail();
+        $test_request = TestRequest::find($id);
+
         return view('expected_result.create', compact('test_request'));
       }
 
