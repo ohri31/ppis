@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class TestRequest extends Model
 {
     //
-    protected $table = "test_request";
+    protected $table = "test_requests";
 
     protected $primaryKey = "id";
 
     protected $fillable = [
-        'name', 'description' ,'equipment_id', 'user_id', 'status_id', 'approved', 'approvedby_id'];
+        'name', 'description' ,'equipment_id', 'user_id', 'status_id', 'approved', 'approvedby_id', 'end_date'];
 
         public function equipment()
             {

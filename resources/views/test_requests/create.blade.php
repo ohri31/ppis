@@ -13,21 +13,23 @@
                 <div class="card-body">
 
                     <div class="form-group">
-                        {{ Form::label('name', 'Test request name') }} {{ Form::text('name', null, array('class' => 'form-control')) }}
+                        {{ Form::label('name', 'Test request name') }} 
+                        {{ Form::text('name', null, array('class' => 'form-control')) }}
                     </div>
 
                     <div class="form-group">
-                        {{ Form::label('description', 'Describe test request') }} {{ Form::text('description', null, array('class' => 'form-control'))
-                        }}
+                        {{ Form::label('description', 'Describe test request') }} 
+                        {{ Form::text('description', null, array('class' => 'form-control')) }}
                     </div>
 
                     <div class='form-group'>
-                        {!! Form::label('equipment', 'Choose equipment you want to test', ['class' => 'control-label']) !!} {!! Form::select('equipment',
-                        $equipment, 1, ['class' => 'form-control']) !!}
+                        {!! Form::label('equipment', 'Choose equipment you want to test', ['class' => 'control-label']) !!} 
+                        {!! Form::select('equipment', $equipment, 1, ['class' => 'form-control']) !!}
                     </div>
 
                     <div class="form-group">
-
+                        {!! Form::label('end_date', 'End date', ['class' => 'control-label']) !!} 
+                        {!! Form::text('end_date', null, ['class' => 'form-control datepicker-future', 'placeholder' => 'Select date', 'readonly', 'required']) !!}
                     </div>
 
                 </div>

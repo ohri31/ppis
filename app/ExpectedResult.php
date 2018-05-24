@@ -6,11 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class TestRequest extends Model
 {
-    protected $fillable = [
-        'min_value', 'max_value' ,'unit', 'testrequest_id', 'description'];
+    protected $table = "expected_results";
 
-        public function testrequest()
-            {
-                return $this->belongsTo('App\TestRequest', 'testrequest_id');
-            }
+    protected $primaryKey = "id";
+
+    protected $fillable = [
+        'min_value', 'max_value' ,'unit', 'testrequest_id', 'description'
+    ];
+
+    public function testrequest()
+    {
+        return $this->belongsTo('App\TestRequest', 'testrequest_id');
+    }
 }
