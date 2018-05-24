@@ -3,6 +3,13 @@
 @section('content') @can ('CanSendRequestsForTesting')
 <div class="container">
   <div class="col-md-12 ">
+    @if(empty($flash_message)) @else
+    <div class="container">
+      <div class="alert alert-success"><em> {{$flash_message}}</em>
+      </div>
+    </div>
+    @endif
+
     <div class="row">
       <div class="col-md-6">
 
@@ -10,44 +17,46 @@
           <div class="card-header bg-info text-white">
             <h1><i class='fa fa-plus'></i> Add Expected Results</h1>
           </div>
+
           <div class="card-body">
             {{ Form::open(array('url' => 'expectedresults')) }}
+
             <div class="form-group">
               <div class="row justify-content-center">
-                <label for="testId" class="col-form-label">Test ID:</label>
+                {{ Form::label('test_id', 'Test request id') }}
                 <div class="col-sm-4">
-                  <input type="text" class="form-control" id="testId" readonly value='{{$test_request->id}}'>
+                  {{ Form::text('test_id', $test_request->id, array('class' => 'form-control', 'readonly')) }}
+
                 </div>
+
               </div>
             </div>
             <div class="form-group">
-              <label for="resultDescription" class="col-form-label">Description (insert parameter that is being tested):</label>
-              <textarea class="form-control" id="resultDescription"></textarea>
+              {{ Form::label('description', 'Description (insert parameter that is being tested):') }} {{ Form::textarea('description',
+              null, array('class' => 'form-control')) }}
             </div>
             <div class="form-group">
-              <label for="resultUnit" class="col-form-label">Unit:</label>
-              <input type="text" class="form-control" id="resultUnit" />
+              {{ Form::label('unit', 'Unit') }} {{ Form::text('unit', null, array('class' => 'form-control')) }}
             </div>
             <div class="form-group">
-              <label for="minValue" class="col-form-label">Minimum value/result:</label>
-              <input type="number" step="0.00001" class="form-control" id="minValue" />
+              {{ Form::label('min_value', 'Minimum value/result:') }} {{ Form::number('min_value', null ,array('class' => 'form-control',
+              'step'=>'0.00001')) }}
             </div>
             <div class="form-group">
-              <label for="maxValue" class="col-form-label">Maximum value/result:</label>
-              <input type="number" step="0.00001" class="form-control" id="maxValue" />
+              {{ Form::label('max_value', 'Maximum value/result:') }} {{ Form::number('max_value', null ,array('class' => 'form-control',
+              'step'=>'0.00001')) }}
             </div>
 
-            <hr> {{ Form::submit('Send test request', array('class' => 'btn btn-success btn-lg float-right')) }} {{ Form::close()
-            }}
+            <hr>
             <div class="form-group">
 
               <a class="btn btn-secondary btn-lg" href="{{ URL::to('testrequests') }}" role="button">Skip</a>
             </div>
 
-            <div class="form-group">
+            {{ Form::submit('Send expected result', array('class' => 'btn btn-success btn-lg float-right')) }} {{ Form::close() }}
 
-            </div>
           </div>
+
         </div>
         <div class="progress">
           <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 66.66%" aria-valuenow="100" aria-valuemin="0"
@@ -71,6 +80,17 @@
             </div>
             <hr>
             <h4> Added expected results </h4>
+
+            @if (count($expected_results) > 0) @foreach ($expected_results as $tr) 
+            <i class="fa fa-check-circle-o" style='color:green'></i>
+            {{ $tr->description }} - [{{$tr->min_result}}, {{$tr->max_result}}]{{$tr->unit}} 
+            @endforeach @else
+            <div class="alert alert-info">
+               Expected results not found
+            </div>
+
+            @endif
+
           </div>
         </div>
       </div>

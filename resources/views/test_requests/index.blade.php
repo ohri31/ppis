@@ -4,8 +4,13 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+
         <div class="col-lg-10 col-lg-offset-1">
             <h1><i class="fa fa-cubes"></i> Test Requests </h1>
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0"
+                    aria-valuemax="100"></div>
+            </div>
             <hr>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
@@ -28,8 +33,9 @@
                         @foreach ($testrequests as $tr)
 
                         <tr>
-
-                            <td>{{ $tr->name }}</td>
+                            <td>
+                                <a href="{{ URL::to('testrequests/'.$tr->id.'/single') }}">{{ $tr->name }}</a>
+                            </td>
                             <td>{{ $tr->description }}</td>
                             <td>{{ $tr->equipment->name}}</td>
                             <td>{{ $tr->user->company_name}}</td>
@@ -67,6 +73,8 @@
             </div>
             @role('Company')
             <a href="{{ URL::to('testrequests/create') }}" class="btn btn-success">Add Test Request</a> @endrole
+
+
         </div>
     </div>
 </div>
