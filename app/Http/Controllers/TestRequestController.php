@@ -10,6 +10,8 @@ use App\ExpectedResult;
 use Auth;
 use DB;
 
+use Carbon\Carbon;
+
 class TestRequestController extends Controller
 {
   public function __construct() {
@@ -73,6 +75,7 @@ class TestRequestController extends Controller
         $test_request->description = $description;
         $test_request->equipment_id = $equipment;
         $test_request->user_id = \Auth::user()->id;
+        $test_request->end_date = Carbon::parse($request['end_date']);
 
         $test_request->save();
 
