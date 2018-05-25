@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TestRequest extends Model
+class ExpectedResult extends Model
 {
     protected $table = "expected_results";
 
     protected $primaryKey = "id";
 
     protected $fillable = [
-        'min_value', 'max_value' ,'unit', 'testrequest_id', 'description'
+        'description', 'unit', 'testrequest_id', 'min_result', 'max_result'
     ];
 
     public function testrequest()

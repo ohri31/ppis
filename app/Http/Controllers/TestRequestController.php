@@ -204,6 +204,19 @@ class TestRequestController extends Controller
 
     }
 
+     /**
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function single($id)
+    {
+      $test_request= TestRequest::findOrFail($id);
+        $expected_results = ExpectedResult::all()->where('testrequest_id', '=', $test_request->id);
+        $today = Carbon::today();
+        return view('test_requests.single', compact('test_request', 'expected_results', 'today'));
+    }
+
 
 
 }
