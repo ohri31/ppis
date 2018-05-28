@@ -58,11 +58,17 @@
                                     @role('Tester')
                                     <a href="{{ URL::to('testrequests/'.$tr->id.'/edit') }}" class="btn btn-info" style="margin-right: 6px; float: left;">Edit</a>                                    @endrole @role('Company') {!! Form::open(['method' => 'DELETE', 'route' => ['testrequests.destroy',
                                     $tr->id] ]) !!} {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!} {!! Form::close()
-                                    !!} @endrole @role('Management') {!! Form::open(['method' => 'PUT', 'route' => ['testrequests.approved',
-                                    $tr->id] ]) !!} {!! Form::submit('Approve', ['class' => 'btn btn-info']) !!} {!! Form::close()
-                                    !!} {!! Form::open(['method' => 'PUT', 'route' => ['testrequests.declined', $tr->id]
-                                    ]) !!} {!! Form::submit('Decline', ['class' => 'btn btn-danger']) !!} {!! Form::close()
-                                    !!} @endrole
+                                    !!} 
+                                    @endrole
+                                     @role('Management') 
+                                     {!! Form::open(['method' => 'PUT', 'route' => ['testrequests.approved', $tr->id] ]) !!} 
+                                    {!! Form::submit('Approve', ['class' => 'btn btn-info']) !!}
+                                     {!! Form::close()!!} 
+
+                                    {!! Form::open(['method' => 'PUT', 'route' => ['testrequests.declined', $tr->id]]) !!} 
+                                    {!! Form::submit('Decline', ['class' => 'btn btn-danger']) !!} 
+                                    {!! Form::close() !!}
+                                    @endrole
                                 </div>
                             </td>
                         </tr>

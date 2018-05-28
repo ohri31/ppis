@@ -18,15 +18,15 @@ class CreateTestCase extends Migration
 
             $table->string('name');
             $table->text('steps');
-            $table->datetime('test_date');
+            $table->text('test_data');
             $table->text('actual_results');
             $table->text('notes')->nullable();
             $table->boolean('status')->default(false);
 
-            $table->integer('test_report_id');
+            $table->integer('test_request_id');
             $table->integer('test_case_type_id');
             $table->integer('expected_result_id');
-
+            
             $table->timestamps();
         });
     }

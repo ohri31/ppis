@@ -11,11 +11,11 @@ class TestCase extends Model
 
     protected $primaryKey = "id";
 
-    protected $fillable = ['name', 'steps', 'test_date', 'actual_results', 'notes', 'status', 'test_report_id', 'test_case_type_id', 'expected_result_id'];
+    protected $fillable = ['name', 'steps', 'test_data', 'actual_results', 'notes', 'status', 'test_request_id', 'test_case_type_id', 'expected_result_id'];
 
-    public function testReport()
+    public function testRequest()
     {
-        return $this->hasOne('App\TestReport', 'id', 'test_report_id');
+        return $this->hasOne('App\TestRequest', 'id', 'test_request_id');
     }
 
     public function testCaseType()

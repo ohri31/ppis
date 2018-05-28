@@ -34,7 +34,7 @@
           @hasanyrole('Management')
           <div class = "col">
               <div class="row form-group">
-          <a class="btn btn-outline-primary btn-block" href="{{ URL::to('testrequests') }}" role="button">View requests for adding new device</a>
+          <a class="btn btn-outline-primary btn-block" href="{{ URL::to('/approvedrequests') }}" role="button">View approved and declined requests</a>
               </div>
           </div>
           @endhasanyrole
@@ -61,7 +61,7 @@
           @else 
           <div class = "col">
               <div class="row form-group">
-          <a class="btn btn-info btn-block" href="{{ URL::to('testrequests') }}" role="button">View test reports</a>
+          <a class="btn btn-info btn-block" href="{{ URL::to('testreports') }}" role="button">View test reports</a>
               </div>
           </div>
           @endrole

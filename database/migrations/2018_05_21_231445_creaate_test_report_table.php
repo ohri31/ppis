@@ -22,6 +22,9 @@ class CreaateTestReportTable extends Migration
 
             $table->integer('tester_id');
             $table->integer('request_id');
+            $table->integer('approved')->default(0);
+            $table->integer('approved_by_id')->nullable();
+
 
             $table->boolean('status')->default(1);
 

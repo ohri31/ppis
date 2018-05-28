@@ -39,7 +39,6 @@
           <h4> Added expected results </h4>
 
           @if (count($expected_results) > 0) @foreach ($expected_results as $tr)
-          <label 
           <i class="fa fa-check-circle-o" style='color:green'></i> {{ $tr->description }} - [{{$tr->min_result}}, {{$tr->max_result}}]{{$tr->unit}} <br>
           @endforeach @else
           <div class="alert alert-info">

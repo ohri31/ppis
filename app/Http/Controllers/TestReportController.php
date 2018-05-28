@@ -14,9 +14,16 @@ class TestReportController extends Controller
     //
     public function index()
     {
-        $reports = TestReport::latest()->paginate(10);
+        $reports = TestReport::all()->where('approved', '=', 0);
 
         return view('test_reports.index', compact('reports'));
+    }
+
+    public function approve()
+    {
+        $reports = TestReport::all()->where('approved', '!=', 0);
+
+        return view('test_reports.approve', compact('reports'));
     }
 
     public function show($id)
@@ -37,6 +44,16 @@ class TestReportController extends Controller
         $testers = User::select('id', 'email')
                         ->pluck('email', 'id')
                         ->toArray();
+        // $users = User::all();
+             
+        // $testers=[];
+        // foreach ($users as $value) {
+        //     if ($value->roles()->pluck('name')[0] == 'Tester') {
+        //         $testers[]=$value;
+        //      }
+        // }
+
+        //$testers=$testers->pluck('email','id')->toArray();
 
         $testers = [0 => "Select tester"] + $testers;
 
@@ -133,4 +150,46 @@ class TestReportController extends Controller
 
         return redirect('testreports');
     }
+
+
+       /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function approved( $id) {
+
+        $test_report = TestReport::findOrFail($id);
+  
+          $test_report->approved = 1;
+          $test_report->approved_by_id = \Auth::user()->id;
+
+  
+          $test_report->save();
+  
+          return redirect()->route('testreports.index')
+              ->with('flash_message',
+               'Test report'. $test_report->name.' approved!');
+      }
+
+       /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function declined($id) {
+
+        $test_report = TestReport::findOrFail($id);
+  
+          $test_report->approved = 3;
+          $test_report->approved_by_id = \Auth::user()->id;
+  
+          $test_report->save();
+  
+          return redirect()->route('testreports.index')
+              ->with('flash_message',
+               'Test report'. $test_report->name.' declined!');
+      }
 }

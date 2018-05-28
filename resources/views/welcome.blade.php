@@ -78,9 +78,11 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
+                    <h3> Commited to Quality </h3>
+                <div class="title m-b-md" style="color:lightseagreen;">
                     MedIT
                 </div>
+               
             </div>
         </div>
     </body>

@@ -31,9 +31,9 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color:lightseagreen; color:black;">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" style="color:white;" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -64,8 +64,8 @@
                         @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                aria-expanded="false" v-pre style="color:white;">
+                                <i class="fa fa-user"></i> {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">

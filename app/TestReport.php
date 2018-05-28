@@ -11,7 +11,7 @@ class TestReport extends Model
 
     protected $primaryKey = "id";
 
-    protected $fillable = ["title", "description", "date", "tester_id", "request_id", "status"];
+    protected $fillable = ["title", "description", "date", "tester_id", "request_id", "status", "approved_by_id", "approved"];
 
     public function tester()
     {
@@ -22,4 +22,9 @@ class TestReport extends Model
     {
         return $this->belongsTo('App\TestRequest', 'request_id');
     }
+    public function approvedby()
+    {
+        return $this->hasOne('App\User', 'id', 'approved_by_id');
+    }
+
 }

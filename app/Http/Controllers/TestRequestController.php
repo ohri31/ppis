@@ -41,6 +41,13 @@ class TestRequestController extends Controller
         return view('test_requests.index')->with('testrequests', $test_requests);
     }
 
+    public function approve()
+    {
+        $requests = TestRequest::all()->where('approved', '!=', 0);
+        $today = Carbon::now();
+        return view('test_requests.approve', compact('requests', 'today'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -144,10 +151,14 @@ class TestRequestController extends Controller
         $status = $request['status'];
         $test_request->status_id = $status;
         $test_request->save();
-
-        return redirect()->route('testrequests.index')
+        $flash_message="Test request updated";
+        if ($status==2){
+            return redirect()->action('TestCaseController@create', compact('test_request', 'flash_message'));
+        } else if ($status==3) {
+            return redirect()->route('testreports.create')
             ->with('flash_message',
              'Test request'. $test_request->name.' updated!');
+        }
     }
     /**
      * Update the specified resource in storage.
@@ -213,7 +224,7 @@ class TestRequestController extends Controller
     {
       $test_request= TestRequest::findOrFail($id);
         $expected_results = ExpectedResult::all()->where('testrequest_id', '=', $test_request->id);
-        $today = Carbon::today();
+        $today = Carbon::now();
         return view('test_requests.single', compact('test_request', 'expected_results', 'today'));
     }
 

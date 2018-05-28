@@ -37,4 +37,8 @@ Route::put('usersdeclined/{id}', 'UserController@declined')->name('users.decline
 Route::put('usersapproved/{id}', 'UserController@approved')->name('users.approved');
 Route::get('/approve', ['as' => 'approve', 'uses' => 'UserController@approve']);
 
+Route::put('testreportsdeclined/{id}', 'TestReportController@declined')->name('testreports.declined');
+Route::put('testreportsapproved/{id}', 'TestReportController@approved')->name('testreports.approved');
 Route::get('testrequests/added', ['as' => 'added', 'uses' => 'TestRequestController@added']);
+Route::get('/approvedreports', 'TestReportController@approve')->name('testreports.approve');
+Route::get('/approvedrequests', 'TestRequestController@approve')->name('testrequests.approve');

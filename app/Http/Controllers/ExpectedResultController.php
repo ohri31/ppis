@@ -54,7 +54,6 @@ class ExpectedResultController extends Controller
 
     
      public function store(Request $request) {
-         echo ('LEJLA');
      //Validate fields
          $this->validate($request, [
              'description' => 'required',
