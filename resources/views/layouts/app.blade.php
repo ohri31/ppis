@@ -10,7 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-    
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -98,9 +98,14 @@
                     <a class="nav-link" href="#">Login</a> @endif
                     <a class="nav-link" href="{{ route('equipment.index') }}">Products</a>
                     <a class="nav-link" href="#">Clients</a>
+                    @if (Auth::check())
+                    @if(Auth::user()->hasRole('Admin'))
+                    <a class="nav-link" href="{{ route('chart') }}">Statistics</a>
+                    @endif
+                    @endif
                     <a class="nav-link" href="#">FAQ</a>
                     @if (Auth::check())
-                    @if(Auth::user()->hasRole('Admin'))                    
+                    @if(Auth::user()->hasRole('Admin'))
                     <a class="nav-link" href="{{ route('testrequests.index') }}">Test Requests</a>
                     <a class="nav-link" href="{{ route('users.index') }}">Manage Users</a>
                     @endif

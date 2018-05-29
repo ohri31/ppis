@@ -42,3 +42,5 @@ Route::put('testreportsapproved/{id}', 'TestReportController@approved')->name('t
 Route::get('testrequests/added', ['as' => 'added', 'uses' => 'TestRequestController@added']);
 Route::get('/approvedreports', 'TestReportController@approve')->name('testreports.approve');
 Route::get('/approvedrequests', 'TestRequestController@approve')->name('testrequests.approve');
+
+Route::get('bar-chart', 'ChartController@index')->name('chart');;
