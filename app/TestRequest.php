@@ -33,4 +33,14 @@ class TestRequest extends Model
     {
         return $this->belongsTo('App\TestRequestsStatus', 'status_id');
     }
+
+    public function expectedResults()
+    {
+        return $this->hasOne('App\ExpectedResult', 'testrequest_id', 'id');
+    }
+
+    public function testReport()
+    {
+        return $this->hasOne('App\TestReport', 'request_id', 'id');
+    }
 }

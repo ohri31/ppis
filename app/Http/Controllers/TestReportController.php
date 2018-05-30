@@ -40,23 +40,6 @@ class TestReportController extends Controller
 
     public function create()
     {
-        // fetch testers
-        $testers = User::select('id', 'email')
-                        ->pluck('email', 'id')
-                        ->toArray();
-        // $users = User::all();
-             
-        // $testers=[];
-        // foreach ($users as $value) {
-        //     if ($value->roles()->pluck('name')[0] == 'Tester') {
-        //         $testers[]=$value;
-        //      }
-        // }
-
-        //$testers=$testers->pluck('email','id')->toArray();
-
-        $testers = [0 => "Select tester"] + $testers;
-
         // fetch requests
         $requests = TestRequest::select('id', 'name')
                                 ->pluck('name', 'id')
@@ -64,7 +47,7 @@ class TestReportController extends Controller
 
         $requests = [0 => "Select request"] + $requests;
 
-        return view('test_reports.create', compact('testers', 'requests'));
+        return view('test_reports.create', compact('requests'));
     }
 
     public function edit($id)
@@ -99,7 +82,6 @@ class TestReportController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'description' => 'required',
-            'tester_id' => 'required',
             'request_id' => 'required'
         ]);
 
@@ -108,6 +90,9 @@ class TestReportController extends Controller
 
         // initilize the 
         $data['date'] = Carbon::now();
+
+        // add teser
+        $data['tester_id'] = Auth::user()->id;
 
         // create test report
         $report = TestReport::create($data);
@@ -120,7 +105,6 @@ class TestReportController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'description' => 'required',
-            'tester_id' => 'required',
             'request_id' => 'required'
         ]);
 
@@ -133,7 +117,7 @@ class TestReportController extends Controller
 
             $report->title = $data['title'];
             $report->description = $data['description'];
-            $report->tester_id = $data['tester_id'];
+            //$report->tester_id = Auth::user();
             $report->request_id = $data['request_id'];
 
             $report->save();

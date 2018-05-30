@@ -11,8 +11,15 @@ window.Popper = require('popper.js').default;
 try {
     window.$ = window.jQuery = require('jquery');
 
+    window.moment = require('moment');
+    window.moment.locale('en');
+
+    require('eonasdan-bootstrap-datetimepicker');
+
     require('bootstrap');
-} catch (e) {}
+} catch (e) {
+    console.log("Jquery not initilized")
+}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

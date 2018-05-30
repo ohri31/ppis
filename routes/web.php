@@ -29,6 +29,7 @@ Route::resource('testreports', 'TestReportController');
 Route::resource('testcases', 'TestCaseController');
 Route::resource('testcasetype', 'TestCaseTypeController');
 
+Route::get('testrequests/{id}/pdf', 'TestRequestController@downloadPDF');
 Route::get('testrequests/{id}/single', 'TestRequestController@single')->name('testrequests.single');
 Route::put('testrequestsdeclined/{id}', 'TestRequestController@declined')->name('testrequests.declined');
 Route::put('testrequestsapproved/{id}', 'TestRequestController@approved')->name('testrequests.approved');
