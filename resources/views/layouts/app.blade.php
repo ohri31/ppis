@@ -99,7 +99,7 @@
                     <a class="nav-link" href="{{ route('equipment.index') }}">Products</a>
                     <a class="nav-link" href="#">Clients</a>
                     @if (Auth::check())
-                    @if(Auth::user()->hasRole('Admin'))
+                    @if(Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Management'))
                     <a class="nav-link" href="{{ route('chart') }}">Statistics</a>
                     @endif
                     @endif

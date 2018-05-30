@@ -43,4 +43,5 @@ Route::get('testrequests/added', ['as' => 'added', 'uses' => 'TestRequestControl
 Route::get('/approvedreports', 'TestReportController@approve')->name('testreports.approve');
 Route::get('/approvedrequests', 'TestRequestController@approve')->name('testrequests.approve');
 
-Route::get('bar-chart', 'ChartController@index')->name('chart');;
+Route::get('bar-chart', 'ChartController@index')->name('chart');
+Route::get('finishedtestrequests', 'FinishedTestRequestController@index')->name('finished_test_requests');

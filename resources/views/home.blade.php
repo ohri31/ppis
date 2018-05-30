@@ -1,4 +1,4 @@
-@extends('layouts.app') 
+@extends('layouts.app')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -34,7 +34,12 @@
                             @endhasanyrole @role('Tester')
                             <div class="col">
                                 <div class="row form-group">
-                                    <a class="btn btn-success  btn-block" href="{{ URL::to('testrequests') }}" role="button">View approved test request</a>
+                                    <a class="btn btn-success  btn-block" href="{{ URL::to('testrequests') }}" role="button">View approved test requests</a>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="row form-group">
+                                    <a class="btn btn-success  btn-block" href="{{ URL::to('finishedtestrequests') }}" role="button">View finished test requests</a>
                                 </div>
                             </div>
                             @endrole @role('TestMngr')
@@ -51,7 +56,7 @@
                             @else
                             <div class="col">
                                 <div class="row form-group">
-                                    <a class="btn btn-info  btn-block" href="{{ URL::to('testrequests') }}" role="button">View test reports</a>
+                                    <a class="btn btn-info  btn-block" href="{{ URL::to('testreports') }}" role="button">View test reports</a>
                                 </div>
                             </div>
                             @endrole @role('Company')
@@ -63,7 +68,7 @@
                             @endrole
                         </div>
                     </div>
-                        
+
                     <div class="col ">
                             <img src="../resources/img.jpg" alt="First slide">
                     </div>

@@ -12,10 +12,9 @@ use DB;
 
 use Carbon\Carbon;
 
-class TestRequestController extends Controller
+class FinishedTestRequestController extends Controller
 {
   public function __construct() {
-         //$this->middleware(['auth', 'clearance']); //isAdmin middleware lets only users with a //specific permission permission to access these resources
      }
     //
     /**
@@ -25,21 +24,10 @@ class TestRequestController extends Controller
     */
     public function index() {
     //Get all users and pass it to the view
-    $rola = Auth::user()->roles()->pluck('name')[0];
-    $user_id = Auth::user()->id;
-    $test_requests = TestRequest::all();
 
-    if($rola == 'Company'){
-        $test_requests = TestRequest::all()->where('user_id', '=', $user_id );
-      }
-    else  if ($rola=='Tester'){
-        $test_requests = TestRequest::all()->where('approved', '=', 1)
-                                           ->where('status_id', '!=', 3);
-      }
-    else if($rola=='Management'){
-        $test_requests = TestRequest::all()->where('approved', '=', 0);
-      }
-        return view('test_requests.index')->with('testrequests', $test_requests);
+    $test_requests = TestRequest::all()->where('status_id', '=', 3);
+
+      return view('test_requests.index')->with('testrequests', $test_requests);
     }
 
     public function approve()
