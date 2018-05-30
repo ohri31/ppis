@@ -18,4 +18,9 @@ class ExpectedResult extends Model
     {
         return $this->belongsTo('App\TestRequest', 'testrequest_id');
     }
+
+    public function testCase()
+    {
+        return $this->hasOne('App\TestCase', 'expected_result_id', 'id');
+    }
 }

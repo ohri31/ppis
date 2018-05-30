@@ -9,6 +9,7 @@ use App\TestRequestsStatus;
 use App\ExpectedResult;
 use Auth;
 use DB;
+use PDF;
 
 use Carbon\Carbon;
 
@@ -59,7 +60,7 @@ class TestRequestController extends Controller
       return view('test_requests.create', compact('equipment', 'expectedResults'));
     }
 
-    /**
+    /** @can ('CanSendRequestsForTesting')
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -229,5 +230,23 @@ class TestRequestController extends Controller
     }
 
 
+    public function downloadPDf($id)
+    {
+        $request = TestRequest::findOrFail($id);
+        $expected = $request->expectedResults;
+        $case = ($request->expectedResults != null) ? $request->expectedResults->testCase : null; 
+        $report = $request->testReport;
 
+        // wrap up the data
+        $data = [
+            'test_request' => $request,
+            'expected' => $expected,
+            'case' => $case,
+            'report' => $report
+        ];
+
+        // wrap the pdf with data
+        $pdf = PDF::loadView('test_requests.pdf', $data);
+        return $pdf->download('test_requests.pdf');
+    }
 }

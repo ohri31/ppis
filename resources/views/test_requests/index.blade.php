@@ -55,6 +55,13 @@
                             <td>{{ $tr->created_at->format('F d, Y h:ia') }}</td>
                             <td>
                                 <div class="btn-group">
+                                     @role('Company')
+                                        @if($tr->status->id == 3)
+                                            <a href="#" class="btn btn-danger" style="margin-right: 15px;border-radius: 3px;">
+                                                <i class="far fa-file-pdf"></i>
+                                            </a>
+                                        @endif
+                                    @endrole
                                     @role('Tester')
                                     <a href="{{ URL::to('testrequests/'.$tr->id.'/edit') }}" class="btn btn-info" style="margin-right: 6px; float: left;">Edit</a>                                    @endrole @role('Company') {!! Form::open(['method' => 'DELETE', 'route' => ['testrequests.destroy',
                                     $tr->id] ]) !!} {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!} {!! Form::close()
@@ -69,6 +76,7 @@
                                     {!! Form::submit('Decline', ['class' => 'btn btn-danger']) !!} 
                                     {!! Form::close() !!}
                                     @endrole
+                                   
                                 </div>
                             </td>
                         </tr>
