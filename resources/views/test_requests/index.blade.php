@@ -57,7 +57,7 @@
                                 <div class="btn-group">
                                      @role('Company')
                                         @if($tr->status->id == 3)
-                                            <a href="#" class="btn btn-danger" style="margin-right: 15px;border-radius: 3px;">
+                                            <a href="{{ url('testrequests/'.$tr->id.'/pdf' )}}" class="btn btn-danger" style="margin-right: 15px;border-radius: 3px;">
                                                 <i class="far fa-file-pdf"></i>
                                             </a>
                                         @endif
