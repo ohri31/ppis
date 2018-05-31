@@ -25,13 +25,15 @@
                                     <a class="btn btn-outline-primary btn-block align-bottom" href="{{ URL::to('testrequests') }}" role="button">View test request</a>
                                 </div>
                             </div>
-                            @endhasanyrole @hasanyrole('Management')
+                            @endhasanyrole 
+                            @hasanyrole('Management')
                             <div class="col">
                                 <div class="row form-group">
                                     <a class="btn btn-outline-primary btn-block" href="{{ URL::to('/approvedrequests') }}" role="button">View approved and declined requests</a>
                                 </div>
                             </div>
-                            @endhasanyrole @role('Tester')
+                            @endhasanyrole 
+                            @role('Tester')
                             <div class="col">
                                 <div class="row form-group">
                                     <a class="btn btn-success  btn-block" href="{{ URL::to('testrequests') }}" role="button">View approved test requests</a>
@@ -42,7 +44,13 @@
                                     <a class="btn btn-success  btn-block" href="{{ URL::to('finishedtestrequests') }}" role="button">View finished test requests</a>
                                 </div>
                             </div>
-                            @endrole @role('TestMngr')
+                            <div class="col">
+                                <div class="row form-group">
+                                    <a class="btn btn-success  btn-block" href="{{ URL::to('testcases') }}" role="button">View test cases</a>
+                                </div>
+                            </div>
+                            @endrole 
+                            @role('TestMngr')
                             <div class="col">
                                 <div class="row form-group">
                                     <a class="btn btn-success  btn-block" href="{{ URL::to('testreports') }}" role="button">View reports waiting for approval</a>
@@ -53,16 +61,34 @@
                                     <a class="btn btn-info  btn-block" href="{{ URL::to('/approvedreports') }}" role="button">View approved test reports</a>
                                 </div>
                             </div>
-                            @else
+                            <div class="col">
+                                <div class="row form-group">
+                                    <a class="btn btn-info  btn-block" href="{{ URL::to('testreports') }}" role="button">View test reports</a>
+                                </div>
+                            </div>                                                                               
+                            @endrole 
+                            @role('Company')
+                            <div class="col">
+                                <div class="row form-group">
+                                    <a class="btn btn-success  btn-block" href="{{ URL::to('testrequests/create') }}" role="button">Create new test request</a>
+                                </div>
+                            </div>
                             <div class="col">
                                 <div class="row form-group">
                                     <a class="btn btn-info  btn-block" href="{{ URL::to('testreports') }}" role="button">View test reports</a>
                                 </div>
                             </div>
-                            @endrole @role('Company')
+                            @endrole
+
+                            @role('Admin')
                             <div class="col">
                                 <div class="row form-group">
-                                    <a class="btn btn-success  btn-block" href="{{ URL::to('testrequests/create') }}" role="button">Create new test request</a>
+                                    <a class="btn btn-info  btn-block" href="{{ URL::to('users') }}" role="button">Manage users</a>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="row form-group">
+                                    <a class="btn btn-info  btn-block" href="{{ URL::to('equipment') }}" role="button">Manage Equipment</a>
                                 </div>
                             </div>
                             @endrole

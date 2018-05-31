@@ -58,13 +58,21 @@
              <a class="btn btn-info btn-block" href="{{ URL::to('testrequests') }}" role="button">View approved test reports</a>
               </div>
           </div>
-          @else 
-          <div class = "col">
-              <div class="row form-group">
-          <a class="btn btn-info btn-block" href="{{ URL::to('testreports') }}" role="button">View test reports</a>
-              </div>
-          </div>
+         
           @endrole
+
+           @role('Admin')
+                            <div class="col">
+                                <div class="row form-group">
+                                    <a class="btn btn-info  btn-block" href="{{ URL::to('users') }}" role="button">Manage users</a>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="row form-group">
+                                    <a class="btn btn-info  btn-block" href="{{ URL::to('equipment') }}" role="button">Manage Equipment</a>
+                                </div>
+                            </div>
+                            @endrole
           @role('Company')
           <div class="col">
               <div class="row form-group">

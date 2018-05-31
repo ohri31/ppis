@@ -14,7 +14,7 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Test Report</th>
+                            <th>Test Request</th>
                             <th>Test Case Type</th>
                             <th>Expected Results</th>
                             <th>Status</th>
@@ -26,7 +26,7 @@
                         @forelse ($cases as $tr)
                             <tr>
                                 <td>{{ $tr->name }}</td>
-                                <td>{{ $tr->testReport->title }}</td>
+                                <td>{{ $tr->testRequest->name }}</td>
                                 <td>{{ $tr->testCaseType->name }}</td>
                                 <td>{{ (isset($tr->expectedResult->id)) ? $tr->expectedResult->id : "-" }}</td>
                                 <td>{{ ($tr->status) ? "Finished" : "Active" }}</td>

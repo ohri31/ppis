@@ -8,6 +8,11 @@ use App\TestCaseType;
 
 class TestCaseTypeController extends Controller
 {
+    
+    public function __construct() {
+        $this->middleware(['auth', 'clearance']); //isAdmin middleware lets only users with a //specific permission permission to access these resources
+    }
+    
     /**
      * Display a listing of the resource.
      *

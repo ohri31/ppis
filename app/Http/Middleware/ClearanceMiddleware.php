@@ -18,8 +18,8 @@ class ClearanceMiddleware {
     {
             return $next($request);
         } */
-
-        if ($request->is('testrequests/create'))//If user is creating a post
+// TEST REQUESTS
+        if ($request->is('testrequests/create'))//kompanija
          {
             if (!Auth::user()->hasPermissionTo('CanSendRequestsForTesting'))
          {
@@ -30,9 +30,20 @@ class ClearanceMiddleware {
             }
         }
 
+        if ($request->is('testrequests'))//kompanija,tester,menadzment,testmngr
+         {
+            if (!Auth::user()->hasPermissionTo('CanManageRequestsForEquipmentAndTesting'))
+         {
+                abort('401');
+            }
+         else {
+                return $next($request);
+            }
+        }
 
 
-        if ($request->is('equipment/create'))//If user is creating a post
+// EQUIPMENT
+        if ($request->is('equipment/create'))//admin
          {
             if (!Auth::user()->hasPermissionTo('CanAddEquipment'))
          {
@@ -44,7 +55,7 @@ class ClearanceMiddleware {
         }
 
 
-    if ($request->is('equipment/*/edit')) //If user is editing a post
+    if ($request->is('equipment/*/edit')) //admin
          {
             if (!Auth::user()->hasPermissionTo('CanAddEquipment')) {
                 abort('401');
@@ -53,7 +64,7 @@ class ClearanceMiddleware {
             }
         }
 
-        if ($request->isMethod('Delete')) //If user is deleting a post
+        if ($request->isMethod('Delete')) //admin
          {
             if (!Auth::user()->hasPermissionTo('CanAddEquipment')) {
                 abort('401');
@@ -63,6 +74,74 @@ class ClearanceMiddleware {
                 return $next($request);
             }
         }
+//TEST REPORTS
+        if ($request->is('testreports'))//If user is creating a post
+        {
+           if (!Auth::user()->hasPermissionTo('CanManageTestReports'))
+        {
+               abort('401');
+           }
+        else {
+               return $next($request);
+           }
+       }
+
+       if ($request->is('testreports/create'))//If user is creating a post
+       {
+          if (!Auth::user()->hasPermissionTo('CanCreateTestReports'))
+       {
+              abort('401');
+          }
+       else {
+              return $next($request);
+          }
+      }
+
+      if ($request->is('testreports/*/edit')) //If user is editing a post
+         {
+            if (!Auth::user()->hasPermissionTo('CanCreateTestReports')) {
+                abort('401');
+            } else {
+                return $next($request);
+            }
+        }
+
+        if ($request->is('approvedreports')) //If user is editing a post
+         {
+            if (!Auth::user()->hasPermissionTo('CanApproveReports')) {
+                abort('401');
+            } else {
+                return $next($request);
+            }
+        }
+
+
+// TEST CASE
+     if ($request->is('testcases')) //tester i testmngr
+         {
+            if (!Auth::user()->hasPermissionTo('CanManageTestCases')) {
+                abort('401');
+            } else {
+                return $next($request);
+            }
+        }
+        if ($request->is('testcases/create')) //tester i testmngr
+        {
+           if (!Auth::user()->hasPermissionTo('CanManageTestCases')) {
+               abort('401');
+           } else {
+               return $next($request);
+           }
+       }
+       if ($request->is('testcases/*/edit')) //tester i testmngr
+       {
+          if (!Auth::user()->hasPermissionTo('CanManageTestCases')) {
+              abort('401');
+          } else {
+              return $next($request);
+          }
+      }
+
 
         return $next($request);
     }

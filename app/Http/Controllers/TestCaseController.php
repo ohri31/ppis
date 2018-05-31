@@ -13,6 +13,10 @@ use App\ExpectedResult;
 
 class TestCaseController extends Controller
 {
+    
+    public function __construct() {
+         $this->middleware(['auth', 'clearance']); //isAdmin middleware lets only users with a //specific permission permission to access these resources
+     }
     /**
      * Display a listing of the resource.
      *
@@ -128,7 +132,7 @@ class TestCaseController extends Controller
 
         $types = [0 => "Select test case type"] + $types;
 
-        $ed = edResult::select('id', 'description')
+        $ed = ExpectedResult::select('id', 'description')
                                     ->pluck('description', 'id')
                                     ->toArray();
 

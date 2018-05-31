@@ -104,8 +104,10 @@
                     <a class="nav-link" href="#">FAQ</a>
                     @if (Auth::check())
                     @if(Auth::user()->hasRole('Admin'))
-                    <a class="nav-link" href="{{ route('testrequests.index') }}">Test Requests</a>
                     <a class="nav-link" href="{{ route('users.index') }}">Manage Users</a>
+                    @endif
+                    @if(Auth::user()->hasRole('Management'))
+                    <a class="nav-link" href="{{ route('testrequests.index') }}">Test Requests</a>
                     @endif
                     @endif
                 </div>
