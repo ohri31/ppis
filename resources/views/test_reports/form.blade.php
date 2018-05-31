@@ -14,14 +14,6 @@
     </div>
 </div>
 
-<div class="form-group {{ $errors->has('tester_id') ? 'has-error' : ''}}">
-    {!! Form::label('tester_id', 'Tester:', ['class' => 'control-label']) !!}
-    <div>
-        {!! Form::select('tester_id', $testers, null, ['class' => 'form-control']) !!}
-        {!! $errors->first('tester_id', '<p class="help-block">:message</p>') !!}
-    </div>
-</div>
-
 <div class="form-group {{ $errors->has('request_id') ? 'has-error' : ''}}">
     {!! Form::label('request_id', 'Request:', ['class' => 'control-label']) !!}
     <div>
