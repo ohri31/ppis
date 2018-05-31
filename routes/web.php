@@ -46,3 +46,5 @@ Route::get('/approvedrequests', 'TestRequestController@approve')->name('testrequ
 
 Route::get('bar-chart', 'ChartController@index')->name('chart');
 Route::get('finishedtestrequests', 'FinishedTestRequestController@index')->name('finished_test_requests');
+Route::get('/about', 'AboutController@index')->name('about');
+Route::get('/companies', 'CompanyController@index')->name('companies');

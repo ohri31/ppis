@@ -92,16 +92,15 @@
             <div class="container">
                 <div class="row">
                     <a class="nav-link" href="{{ route('home') }}">Home</a>
-                    <a class="nav-link" href="#">About</a> @if (!Auth::check())
+                    <a class="nav-link" href="{{ route('about') }}">About</a> @if (!Auth::check())
                     <a class="nav-link" href="#">Login</a> @endif
                     <a class="nav-link" href="{{ route('equipment.index') }}">Products</a>
-                    <a class="nav-link" href="#">Clients</a>
+                    <a class="nav-link" href="{{ route('companies')}}">Companies</a>
                     @if (Auth::check())
                     @if(Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Management'))
                     <a class="nav-link" href="{{ route('chart') }}">Statistics</a>
                     @endif
                     @endif
-                    <a class="nav-link" href="#">FAQ</a>
                     @if (Auth::check())
                     @if(Auth::user()->hasRole('Admin'))
                     <a class="nav-link" href="{{ route('users.index') }}">Manage Users</a>

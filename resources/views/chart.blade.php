@@ -5,17 +5,16 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
-
-<select id="category_id" name="category_id" class="form-control selectpicker" width="10">
+<div class="container row justify-content-center">
+<div class="col-md-10 text-center">
+    <select id="category_id" name="category_id" class="form-control selectpicker" width="10">
             <option id="option0" value="0">Choose chart</option>
-            <option id="option1" value="1">Registered companies statistics</option>
+            <option id="option1" value="1">Registered users statistics</option>
             <option id="option2" value="2">Test requests statistics</option>
             <option id="option3" value="3">Test requests approval statuses</option>
             <option id="option4" value="4">Test requests statuses</option>
     </select>
 <br/>
-
-<div class="container">
   <h3 id="label1" style="display:none">Number of registered companies per month</h3>
   <canvas id="chart1" height="100" style="display:none"></canvas>
 
@@ -27,8 +26,8 @@
 
   <h3 id="label4" style="display:none">Test requests statuses</h3>
   <canvas id="chart4" height="100" style="display:none"></canvas>
-</div>
 
+</div>
 </div>
 
 <script>
@@ -115,7 +114,7 @@ var statistics2 = new Chart(ctx2, {
             labels: labels2,
             datasets: [{
                 data: data2,
-                backgroundColor: ["#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7FDBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"]
+                backgroundColor: ["#20b2aa", "#C0C0C0"]
             }]
         },
         options: {
@@ -155,13 +154,22 @@ var statistics = new Chart(ctx3, {
             datasets: [{
                 label: false,
                 data: data,
-                backgroundColor: ["#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7FDBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"],
+                backgroundColor: ["#20b2aa", "#C0C0C0"],
                 legend: {
                   display:false
                 }
             }]
         },
         options: {
+          scales: {
+              yAxes: [{
+                ticks: {
+                   beginAtZero: true,
+                   fixedStepSize: 1,
+                   min: 0
+               }
+              }]
+          },
     legend: {
         display: false
     },
@@ -195,7 +203,7 @@ var statistics = new Chart(ctx4, {
             labels: labels,
             datasets: [{
                 data: data,
-                backgroundColor: ["#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7FDBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"]
+                backgroundColor:  ["#20b2aa", "#C0C0C0"]
             }]
         },
         options: {
@@ -214,5 +222,4 @@ var statistics = new Chart(ctx4, {
           }
       });
 </script>
-
 @endsection

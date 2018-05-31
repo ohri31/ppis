@@ -17,7 +17,6 @@ class ChartController extends Controller
     public function index() {
       $registeredCompanies = DB::table('users')
             ->select(DB::raw('MONTHNAME(created_at) as month'), DB::raw("DATE_FORMAT(created_at,'%Y-%m') as monthNum"), DB::raw('count(*) as projects'))
-            ->where('role_id', 1)
             ->groupBy('monthNum')
             ->get();
 
