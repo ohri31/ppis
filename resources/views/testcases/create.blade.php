@@ -1,6 +1,6 @@
-@extends('layouts.app') 
-@section('title', '| Add Test Case') 
-@section('content') 
+@extends('layouts.app')
+@section('title', '| Add Test Case')
+@section('content')
 <div class="container ">
         <div class="col-md-14 justify-content-center">
                 @if(!empty($flash_message))
@@ -9,15 +9,15 @@
                 @endif
             <div class="row">
                 <div class="col-md-7">
-            
+
             <h1>
                 <i class="far fa-edit"></i> Create test case
             </h1>
             <hr />
             {!! Form::open([
-                'url' => '/testcases', 
-                'class' => 'form-horizontal', 
-                'files' => true]) 
+                'url' => '/testcases',
+                'class' => 'form-horizontal',
+                'files' => true])
             !!}
                 @include('testcases.form')
             {!! Form::close() !!}
@@ -28,7 +28,7 @@
                             <h1> <i class="fa fa-check-circle-o" style='color:green'></i> About test cases</h1>
                         </div>
                         <div class="card-body">
-                            @if (count($test_cases) > 0) 
+                            @if (count($test_cases) > 0)
                             <table class="table table-bordered table-striped">
                                     <tbody>
                                         <th>  Title </th>
@@ -43,18 +43,18 @@
                                                 <td>{{ $tr->actual_results }}</td>
                                                 <td>{{ $tr->expectedresult->min_result}} - {{ $tr->expectedresult->max_result}} {{ $tr->expectedresult->unit}} </td>
 
-                                                @if ($tr->status == 1) 
-                                                <td style="background-color:green; max-width:2px;"></td>
+                                                @if ($tr->status == 1)
+                                                <td style="text-align: center; max-width:2px;"><i class="fa fa-check-circle-o" style="color:green"></i></td>
                                                 @else
-                                                <td style="background-color: red; max-width:2px;"></td>
+                                                <td style="text-align: center; max-width:2px;"><i class="fa fa-remove" style="color:red"></i></td>
                                                 @endif
                                             </tr>
-                                 
+
                                 @endforeach
                             </tbody>
-                                
+
                             </table>
-                                
+
                              @else
                             <div class="alert alert-info">
                                 Test cases not found

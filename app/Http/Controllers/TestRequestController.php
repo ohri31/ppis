@@ -144,7 +144,7 @@ class TestRequestController extends Controller
       $test_request = TestRequest::findOrFail($id);
     //Validate name and permission fields
         $this->validate($request, [
-            'name'=>'required|max:10|unique:equipment',
+            'name'=>'required|unique:equipment',
             'description',
             'status' =>'required',
         ]);
@@ -235,7 +235,7 @@ class TestRequestController extends Controller
     {
         $request = TestRequest::findOrFail($id);
         $expected = $request->expectedResults;
-        $case = ($request->expectedResults != null) ? $request->expectedResults->testCase : null; 
+        $case = ($request->expectedResults != null) ? $request->expectedResults->testCase : null;
         $report = $request->testReport;
 
         // wrap up the data

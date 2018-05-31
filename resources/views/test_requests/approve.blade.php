@@ -1,12 +1,12 @@
-{{-- \resources\views\users\index.blade.php --}} 
-@extends('layouts.app') 
-@section('title', '| Test requests') 
+{{-- \resources\views\users\index.blade.php --}}
+@extends('layouts.app')
+@section('title', '| Test requests')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-12 col-lg-offset-1">
             <h1>
-                <i class="fas fa-chart-bar"></i> Test requests 
+                <i class="fas fa-chart-bar"></i> Test requests
             </h1>
             <hr>
             <div class="table-responsive">
@@ -34,11 +34,11 @@
                                 <td>{{ $tr->approvedby->name }}</td>
                                 <td> {{ $tr->status->name}}  </td>
                                 @if($tr->end_date > $today)
-                                <td style="background-color:green; font-weight:bold;"> <b> {{ $tr->end_date }} </b> </td>
-                                @else 
-                                <td style="background-color:red; font-weight:bold;">  {{ $tr->end_date }}</td>
+                                <td style="text-align: center; font-weight:bold;"><i class="fa fa-check-circle-o" style="color:green"></i> &nbsp;<b> {{ $tr->end_date }} </b> </td>
+                                @else
+                                <td style="text-align: center; font-weight:bold;"><i class="fa fa-remove" style="color:red"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{ $tr->end_date }}</td>
                                 @endif
-                                
+
                             </tr>
                         @empty
                             <tr>
@@ -47,7 +47,7 @@
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
-                                <td>-</td>                            
+                                <td>-</td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -55,7 +55,7 @@
                 </table>
             </div>
             @role('Company')
-            <a href="{{ URL::to('testrequests/create') }}" class="btn btn-success">Add Test Request</a> 
+            <a href="{{ URL::to('testrequests/create') }}" class="btn btn-success">Add Test Request</a>
             @endrole
         </div>
     </div>
