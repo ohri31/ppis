@@ -77,7 +77,7 @@ class ClearanceMiddleware {
 //TEST REPORTS
         if ($request->is('testreports'))//If user is creating a post
         {
-           if (!Auth::user()->hasPermissionTo('CanManageTestReports'))
+           if (!Auth::user()->hasPermissionTo('CanManageTestReports') || !Auth::user()->hasPermissionTo('CanSeeFinalTestReport'))
         {
                abort('401');
            }

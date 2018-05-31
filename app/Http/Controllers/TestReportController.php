@@ -8,6 +8,9 @@ use Carbon\Carbon;
 use App\TestReport;
 use App\TestRequest;
 use App\User;
+use Auth;
+use Illuminate\Support\Collection;
+
 
 class TestReportController extends Controller
 {
@@ -16,8 +19,16 @@ class TestReportController extends Controller
     }
     public function index()
     {
+        $rola = Auth::user()->roles()->pluck('name')[0];
+        $user_id = Auth::user()->id;
         $reports = TestReport::all()->where('approved', '=', 0);
-
+        if($rola == 'Company'){
+            $reports =TestReport::select('test_report.*')
+            ->leftJoin('test_requests', 'test_report.request_id', '=', 'test_requests.id')
+            ->where('test_requests.user_id', '=', $user_id)
+            ->get();        
+           }
+           
         return view('test_reports.index', compact('reports'));
     }
 

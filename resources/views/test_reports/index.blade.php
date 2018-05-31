@@ -36,7 +36,10 @@
                                 <td>
                                     <div class="btn-group">
                                         @role('Tester')
-                                        <a href="{{ URL::to('testreports/'.$tr->id.'/edit') }}" class="btn btn-info" style="margin-right: 6px; float: left;">Edit</a>                                    @endrole @role('Company') {!! Form::open(['method' => 'DELETE', 'route' => ['testreports.destroy',
+                                        <a href="{{ URL::to('testreports/'.$tr->id.'/edit') }}" class="btn btn-info" style="margin-right: 6px; float: left;">Edit</a>                                    
+                                        @endrole 
+                                        @role('Company') 
+                                        {!! Form::open(['method' => 'DELETE', 'route' => ['testreports.destroy',
                                         $tr->id] ]) !!} {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!} {!! Form::close()
                                         !!} 
                                         @endrole
@@ -66,8 +69,8 @@
 
                 </table>
             </div>
-            @role('Company')
-            <a href="{{ URL::to('testrequests/create') }}" class="btn btn-success">Add Test Request</a> 
+            @role('Tester')
+            <a href="{{ URL::to('testreports/create') }}" class="btn btn-success">Add Test Report</a> 
             @endrole
         </div>
     </div>
