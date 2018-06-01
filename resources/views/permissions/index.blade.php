@@ -27,6 +27,7 @@
                 @foreach ($permissions as $permission)
                 <tr>
                     <td>{{ $permission->name }}</td>
+                    
                     <td>
                       <div class="btn-group">
 
@@ -35,14 +36,14 @@
                     {!! Form::open(['method' => 'DELETE', 'route' => ['permissions.destroy', $permission->id] ]) !!}
                     {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                     {!! Form::close() !!}
-</div>
+                    </div>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
-
+    
     <a href="{{ URL::to('permissions/create') }}" class="btn btn-success">Add Permission</a>
     <a href="{{ url()->previous() }}" class="btn btn-light" style="width: 100%;padding: 15px;margin-top: 15px;">
             Go back

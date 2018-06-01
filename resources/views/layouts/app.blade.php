@@ -92,8 +92,10 @@
             <div class="container">
                 <div class="row">
                     <a class="nav-link" href="{{ route('home') }}">Home</a>
-                    <a class="nav-link" href="{{ route('about') }}">About</a> @if (!Auth::check())
-                    <a class="nav-link" href="#">Login</a> @endif
+                    <a class="nav-link" href="{{ route('about') }}">About</a> 
+                    @if (!Auth::check())
+                    <a class="nav-link" href="#">Login</a> 
+                    @endif
                     <a class="nav-link" href="{{ route('equipment.index') }}">Products</a>
                     <a class="nav-link" href="{{ route('companies')}}">Companies</a>
                     @if (Auth::check())
