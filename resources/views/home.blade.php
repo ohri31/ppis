@@ -22,7 +22,7 @@
                             @hasanyrole('Company|Management')
                             <div class="col">
                                 <div class="row form-group">
-                                    <a class="btn btn-outline-primary btn-block align-bottom" href="{{ URL::to('testrequests') }}" role="button">View test request</a>
+                                    <a class="btn btn-outline-primary btn-block align-bottom" href="{{ URL::to('testrequests') }}" role="button">View test requests</a>
                                 </div>
                             </div>
                             @endhasanyrole 

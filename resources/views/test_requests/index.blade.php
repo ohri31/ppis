@@ -2,7 +2,7 @@
 @extends('layouts.app') 
 @section('title', '| Test Requests') 
 @section('content')
-@can('CanManageRequestsForEquipmentAndTesting')
+@can('CanManageTestRequests')
 <div class="container">
     <div class="row justify-content-center">
 

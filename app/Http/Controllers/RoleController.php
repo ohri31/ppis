@@ -48,7 +48,7 @@ class RoleController extends Controller {
     public function store(Request $request) {
     //Validate name and permissions field
         $this->validate($request, [
-            'name'=>'required|unique:roles|max:10',
+            'name'=>'required|unique:roles|max:30',
             'permissions' =>'required',
             ]
         );
@@ -108,7 +108,7 @@ class RoleController extends Controller {
         $role = Role::findOrFail($id);//Get role with the given id
     //Validate name and permission fields
         $this->validate($request, [
-            'name'=>'required|max:10|unique:roles,name,'.$id,
+            'name'=>'required|max:30|unique:roles,name,'.$id,
             'permissions' =>'required',
         ]);
 

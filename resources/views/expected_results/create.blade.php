@@ -1,6 +1,7 @@
 @extends('layouts.app') 
 @section('title', '| Add Test Request') 
-@section('content') @can ('CanSendRequestsForTesting')
+@section('content') 
+@can ('CanSendRequestsForTesting')
 <div class="container">
   <div class="col-md-12 ">
     @if(empty($flash_message)) @else

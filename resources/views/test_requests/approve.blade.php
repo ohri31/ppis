@@ -2,6 +2,7 @@
 @extends('layouts.app')
 @section('title', '| Test requests')
 @section('content')
+@('CanSeeApprovedDeclinedRequests')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-12 col-lg-offset-1">
@@ -17,6 +18,7 @@
                             <th>Company</th>
                             <th>Equipment</th>
                             <th>Date created</th>
+                            <th>Approved</th>
                             <th>Approved by</th>
                             <th>Status</th>
                             <th> Due date </th>
@@ -31,6 +33,13 @@
                                 <td> {{ $tr->user->company_name}} </td>
                                 <td>{{ $tr->equipment->name }}</td>
                                 <td>{{  $tr->created_at  }}</td>
+                                <td style="text-align: center;">
+                                @if($tr->approved == 1)
+                                <p style="color:green">
+                                <i class="fa fa-check"> </i> </p>
+                                @else
+                                <i class="fa fa-remove" style="color:red"></i>
+                                @endif</td>
                                 <td>{{ $tr->approvedby->name }}</td>
                                 <td> @if ($tr->status->name == "Done")
                                    <p style="color:green"> {{ $tr->status->name}}  
@@ -65,4 +74,5 @@
         </div>
     </div>
 </div>
+@endcan
 @endsection

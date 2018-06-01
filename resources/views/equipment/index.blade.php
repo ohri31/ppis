@@ -3,7 +3,7 @@
 @section('title', '| Equipment')
 
 @section('content')
-@can('CanAddEquipment')
+@can('CanManageEquipment')
 <div class="container">
     <div class="row justify-content-center">
 <div class="col-lg-10 col-lg-offset-1">

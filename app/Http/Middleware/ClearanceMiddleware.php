@@ -32,7 +32,7 @@ class ClearanceMiddleware {
 
         if ($request->is('testrequests'))//kompanija,tester,menadzment,testmngr
          {
-            if (!Auth::user()->hasPermissionTo('CanManageRequestsForEquipmentAndTesting'))
+            if (!Auth::user()->hasPermissionTo('CanManageTestRequests'))
          {
                 abort('401');
             }
@@ -41,11 +41,20 @@ class ClearanceMiddleware {
             }
         }
 
-
+        if ($request->is('approvedrequests'))
+        {
+           if (!Auth::user()->hasPermissionTo('CanSeeApprovedDeclinedRequests'))
+        {
+               abort('401');
+           }
+        else {
+               return $next($request);
+           }
+       }
 // EQUIPMENT
         if ($request->is('equipment/create'))//admin
          {
-            if (!Auth::user()->hasPermissionTo('CanAddEquipment'))
+            if (!Auth::user()->hasPermissionTo('CanManageEquipment'))
          {
                 abort('401');
             }
@@ -57,7 +66,7 @@ class ClearanceMiddleware {
 
     if ($request->is('equipment/*/edit')) //admin
          {
-            if (!Auth::user()->hasPermissionTo('CanAddEquipment')) {
+            if (!Auth::user()->hasPermissionTo('CanManageEquipment')) {
                 abort('401');
             } else {
                 return $next($request);
@@ -66,7 +75,7 @@ class ClearanceMiddleware {
 
         if ($request->isMethod('Delete')) //admin
          {
-            if (!Auth::user()->hasPermissionTo('CanAddEquipment')) {
+            if (!Auth::user()->hasPermissionTo('CanManageEquipment')) {
                 abort('401');
             }
          else
@@ -74,10 +83,11 @@ class ClearanceMiddleware {
                 return $next($request);
             }
         }
+
 //TEST REPORTS
         if ($request->is('testreports'))//If user is creating a post
         {
-           if (!Auth::user()->hasPermissionTo('CanManageTestReports') || !Auth::user()->hasPermissionTo('CanSeeFinalTestReport'))
+           if (!Auth::user()->hasPermissionTo('CanSeeTestReports'))
         {
                abort('401');
            }
@@ -85,6 +95,7 @@ class ClearanceMiddleware {
                return $next($request);
            }
        }
+
 
        if ($request->is('testreports/create'))//If user is creating a post
        {

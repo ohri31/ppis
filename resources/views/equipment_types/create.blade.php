@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', '| Add EquipmentType')
-
+@can('CanManageEquipment')
 @section('content')
 
 <div class="container">
@@ -29,5 +29,5 @@
 </div>
 </div>
 </div>
-
+@endcan
 @endsection

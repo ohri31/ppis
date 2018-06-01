@@ -2,7 +2,7 @@
 @extends('layouts.app') 
 @section('title', '| Test Reports') 
 @section('content')
-@can('CanManageTestReports')
+@can('CanSeeTestReports')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-12 col-lg-offset-1">

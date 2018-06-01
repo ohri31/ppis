@@ -3,8 +3,9 @@
 @section('title', '| Equipment')
 
 @section('content')
-<div class="container row" style="margin-left:5%">
-      @foreach ($companies as $company)
+<div class="container ">
+    <div class="row justify-content-center">
+         @foreach ($companies as $company)
       @if($company->roles()->pluck('name')[0] == 'Company')
   <div class="card col-md-6">
     <div class="card-body">
@@ -14,6 +15,10 @@
   </div>
       @endif
      @endforeach
+
+     
 </div>
 </div>
+</div>
+
 @endsection

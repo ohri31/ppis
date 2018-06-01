@@ -5,7 +5,8 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
-<div class="container row justify-content-center">
+<div class="container">
+<div class="row justify-content-center">
 <div class="col-md-10 text-center">
     <select id="category_id" name="category_id" class="form-control selectpicker" width="10">
             <option id="option0" value="0">Choose chart</option>
@@ -29,7 +30,7 @@
 
 </div>
 </div>
-
+</div>
 <script>
 $("#category_id").change(function() {
   var id = $(this).val();
