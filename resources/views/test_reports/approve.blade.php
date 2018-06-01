@@ -2,7 +2,6 @@
 @extends('layouts.app') 
 @section('title', '| Test Reports') 
 @section('content')
-@can('CanApproveReports')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-10 col-lg-offset-1">
@@ -54,5 +53,5 @@
         </div>
     </div>
 </div>
-@endcan
+
 @endsection
