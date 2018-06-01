@@ -34,7 +34,7 @@
         {!! Form::select('equipment_type', $equipment_types, $equipment->equipment_type_id, ['class' => 'form-control']) !!}
 
       </div>
-      {{ Form::submit('Add', array('class' => 'btn btn-primary')) }}
+      {{ Form::submit('Edit', array('class' => 'btn btn-primary')) }}
 
       {{ Form::close() }}
 

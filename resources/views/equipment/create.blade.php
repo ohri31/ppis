@@ -23,7 +23,7 @@
 
     <div class="form-group">
         {{ Form::label('description', 'Description') }}
-        {{ Form::text('description', null, array('class' => 'form-control')) }}
+        {{ Form::textarea('description', null, array('class' => 'form-control')) }}
     </div>
 
 

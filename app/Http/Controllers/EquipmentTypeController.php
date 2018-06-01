@@ -41,7 +41,7 @@ class EquipmentTypeController extends Controller
   public function store(Request $request) {
   //Validate name and permissions field
       $this->validate($request, [
-          'name'=>'required|unique:equipment_types|max:10',
+          'name'=>'required|unique:equipment_types',
           ]
       );
 
@@ -49,7 +49,7 @@ class EquipmentTypeController extends Controller
       $equipment_type = new EquipmentType();
       $equipment_type->name = $name;
 
-      $equipment_type->save();
+      $equipment_type->update();
 
 
       return redirect()->route('equipmenttypes.index')
@@ -90,11 +90,13 @@ class EquipmentTypeController extends Controller
     $equipment_type = EquipmentType::findOrFail($id);
   //Validate name and permission fields
       $this->validate($request, [
-          'name'=>'required|max:10|unique:equipment_types,name,'.$id,
+          'name'=>'required|unique:equipment_types,name,'.$id,
       ]);
+        $equipment_type->name =  $request['name'];
+        $equipment_type->save();
       return redirect()->route('equipmenttypes.index')
           ->with('flash_message',
-           'Equipment Type'. $equipment_type->name.' updated!');
+           'Equipment Type '. $equipment_type->name.' updated!');
   }
 
   /**

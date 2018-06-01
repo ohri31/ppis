@@ -100,13 +100,14 @@ class EquipmentController extends Controller
       $equipment = Equipment::findOrFail($id);
     //Validate name and permission fields
         $this->validate($request, [
-            'name'=>'required|max:10|unique:equipment',
+            'name'=>'required',
             'description',
             'equipment_type' =>'required',
         ]);
 
         $input = $request->except(['equipment_type']);
         $equipment_type = $request['equipment_type'];
+        $equipment->equipment_type_id = $equipment_type;
         $equipment->fill($input)->save();
 
         return redirect()->route('equipment.index')
