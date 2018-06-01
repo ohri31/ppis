@@ -53,6 +53,9 @@
     </div>
 
     <a href="{{ route('users.create') }}" class="btn btn-success">Add User</a>
+    <a href="{{ url()->previous() }}" class="btn btn-light" style="width: 100%;padding: 15px;margin-top: 15px;">
+            Go back
+        </a>
 
 </div>
 </div>

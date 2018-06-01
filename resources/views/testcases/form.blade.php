@@ -71,6 +71,6 @@
 
 <input type="submit" class="btn btn-success" value="Save" style="width: 100%;padding: 15px" />
 
-<a href="{{ url()->previous() }}" class="btn btn-light" style="width: 100%;padding: 15px;margin-top: 15px;">
-    Go back 
+<a href="{{ URL::to("/testrequests") }}" class="btn btn-light" style="width: 100%;padding: 15px;margin-top: 15px;">
+    Cancel
 </a>

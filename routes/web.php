@@ -48,3 +48,4 @@ Route::get('bar-chart', 'ChartController@index')->name('chart');
 Route::get('finishedtestrequests', 'FinishedTestRequestController@index')->name('finished_test_requests');
 Route::get('/about', 'AboutController@index')->name('about');
 Route::get('/companies', 'CompanyController@index')->name('companies');
+Route::get('testrequests/{id}/testcases', 'TestRequestController@testcases')->name('testrequests.testcases');

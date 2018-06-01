@@ -50,12 +50,12 @@
                         <!-- Authentication Links -->
                         @guest
                         <li>
-                            <a class="nav-link" href="{{ route('login') }}">
+                            <a class="nav-link" href="{{ route('login') }}" style="color:white;">
                                     <i class="fa fa-user"></i> {{ __('Login') }}
                                 </a>
                         </li>
                         <li>
-                            <a class="nav-link" href="{{ route('register') }}">
+                            <a class="nav-link" href="{{ route('register') }}" style="color:white;">
                                     <i class="fas fa-sign-in-alt"></i> {{ __('Register') }}
                                 </a>
                         </li>

@@ -6,8 +6,14 @@
 <div class="container">
     <div class="row justify-content-center">
 
-        <div class="col-lg-10 col-lg-offset-1">
+        <div class="col-lg-14 col-lg-offset-1">
+            @if (!empty($test_reports))
+            <h1><i class="fa fa-cubes"></i> Finished Test Requests </h1>
+            
+            @else
             <h1><i class="fa fa-cubes"></i> Test Requests </h1>
+            
+            @endif
             <div class="progress">
                 <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0"
                     aria-valuemax="100"></div>
@@ -27,6 +33,12 @@
                             <th>Approved by</th>
                             <th>Date/Time Added</th>
                             <th>Operations</th>
+                            @if (!empty($test_reports))
+                            <th>Report created</th>
+                            <th>Report approved</th>
+                            
+                            @endif
+                            
                         </tr>
                     </thead>
 
@@ -54,15 +66,15 @@
 
                             @endif
                             <td>{{ $tr->created_at->format('F d, Y h:ia') }}</td>
-                            <td>
+                            <td style="text-align: center;">
                                 <div class="btn-group">
-                                     @role('Company')
+                                     @hasanyrole('Company|TestMngr')
                                         @if($tr->status->id == 3)
                                             <a href="{{ url('testrequests/'.$tr->id.'/pdf' )}}" class="btn btn-danger" style="margin-right: 15px;border-radius: 3px;">
                                                 <i class="far fa-file-pdf"></i>
                                             </a>
                                         @endif
-                                    @endrole
+                                    @endhasanyrole
                                     @role('Tester')
                                     <a href="{{ URL::to('testrequests/'.$tr->id.'/edit') }}" class="btn btn-info" style="margin-right: 6px; float: left;">Edit</a>                                    @endrole @role('Company') {!! Form::open(['method' => 'DELETE', 'route' => ['testrequests.destroy',
                                     $tr->id] ]) !!} {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!} {!! Form::close()
@@ -80,6 +92,29 @@
                                    
                                 </div>
                             </td>
+                          
+                            @if( ! empty($test_reports))
+                                @foreach ($test_reports as $test_report)
+                                   @if ($test_report->request->id == $tr->id)
+                                    <td style="text-align:center;">
+                                       <i class="fa fa-check-square" style="color:green;  text-align:center; font-size:25px;"></i>
+                                    </td>
+                                    <td style="text-align:center;">
+                                        @if ($test_report->approved == '1')
+                                            <i class="fa fa-check-square" style="color:green;  text-align:center; font-size:25px;"></i>
+                                        @else 
+                                            <i class="fa fa-times-circle" style="color:red;  text-align:center; font-size:25px;"></i>
+                                        @endif
+                                    </td>
+                                   @endif
+                                @endforeach             
+                            @endif
+                           
+                            @hasanyrole('Tester|TestMngr')
+                            <td>
+                                 <a href="{{ URL::to('testrequests/'.$tr->id.'/testcases') }}" class="btn btn-warning" style="margin-right: 6px; float: left; font-weight: bold;">View test cases</a>                                 
+                            </td>
+                            @endhasanyrole
                         </tr>
                         @endforeach
                     </tbody>
@@ -88,6 +123,8 @@
             </div>
             @role('Company')
             <a href="{{ URL::to('testrequests/create') }}" class="btn btn-success">Add Test Request</a> @endrole
+
+           
 
 
         </div>

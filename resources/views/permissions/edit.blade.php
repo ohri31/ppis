@@ -25,6 +25,10 @@
     {{ Form::submit('Edit', array('class' => 'btn btn-primary')) }}
 
     {{ Form::close() }}
+
+    <a href="{{ url()->previous() }}" class="btn btn-light" style="width: 100%;padding: 15px;margin-top: 15px;">
+            Go back
+        </a>
 </div>
 </div>
 </div>

@@ -40,7 +40,7 @@ class TestCaseController extends Controller
         $id = request()->get('test_request');
         $flash_message = request()->get('flash_message');
         $test_request = TestRequest::find($id);
-        $test_cases = TestCase::all()->where('test_request_id', '=', $id);
+        $test_cases = TestCase::all()->where('test_request_id', '=', $test_request['id']);
         // $ed_results = edResult::all()->where('testrequest_id', '=', $test_request['id'];
         
         // //

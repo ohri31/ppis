@@ -16,9 +16,9 @@
                             <th>Name</th>
                             <th>Test Request</th>
                             <th>Test Case Type</th>
-                            <th>Expected Results</th>
+                            <th style="max-width: 100px">Expected Results</th>
                             <th>Status</th>
-                            <th style="text-align: right;">Actions</th>
+                            <th>Pass</th>
                         </tr>
                     </thead>
 
@@ -30,10 +30,18 @@
                                 <td>{{ $tr->testCaseType->name }}</td>
                                 <td>{{ (isset($tr->expectedResult->id)) ? $tr->expectedResult->id : "-" }}</td>
                                 <td>{{ ($tr->status) ? "Finished" : "Active" }}</td>
-                                <td style="text-align: right;">
-                                    <a href="{{ url('testcases/'.$tr->id.'/edit') }}" class="btn btn-primary btn-sm">
-                                        Edit 
-                                    </a>
+                                <td style="text-align: center;">
+                                    @if ($tr->status)
+                                        @if ($tr->actual_result <= $tr->expectedResult->min_result && $tr->expectedResult->max_result >= $tr->actual_result)
+                                            <i class="fa fa-check-circle" style="color:green;  text-align:center; font-size:25px;"></i>
+                                        @else
+                                             <i class="fa fa-times-circle" style="color:red;  text-align:center; font-size:25px;"></i>
+                                        @endif
+                                    
+                                    @else
+                                         <i class="fa fa-spinner" style="color:blue;  text-align:center; font-size:25px;"></i>
+
+                                    @endif
                                 </td>
                             </tr>
                         @empty

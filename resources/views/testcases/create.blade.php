@@ -44,9 +44,9 @@
                                                 <td>{{ $tr->expectedresult->min_result}} - {{ $tr->expectedresult->max_result}} {{ $tr->expectedresult->unit}} </td>
 
                                                 @if ($tr->status == 1)
-                                                <td style="text-align: center; max-width:2px;"><i class="fa fa-check-circle-o" style="color:green"></i></td>
+                                                <td style="text-align: center; max-width:2px;"> <i class="fa fa-check-circle" style="color:green; font-size:20px;"></i></td>
                                                 @else
-                                                <td style="text-align: center; max-width:2px;"><i class="fa fa-remove" style="color:red"></i></td>
+                                                <td style="text-align: center; max-width:2px;"><i class="fa fa-remove" style="color:red; font-size:20px;"></i></td>
                                                 @endif
                                             </tr>
 

@@ -1,5 +1,5 @@
 <div class="form-group {{ $errors->has('title') ? 'has-error' : ''}}">
-    {!! Form::label('title', 'Video title:', ['class' => 'control-label']) !!}
+    {!! Form::label('title', 'Report title:', ['class' => 'control-label']) !!}
     <div>
         {!! Form::text('title', null, ['class' => 'form-control']) !!}
         {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
@@ -7,7 +7,7 @@
 </div>
 
 <div class="form-group {{ $errors->has('description') ? 'has-error' : ''}}">
-    {!! Form::label('description', 'Video description:', ['class' => 'control-label']) !!}
+    {!! Form::label('description', 'Report description:', ['class' => 'control-label']) !!}
     <div>
         {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
         {!! $errors->first('description', '<p class="help-block">:message</p>') !!}

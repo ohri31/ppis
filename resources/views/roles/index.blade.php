@@ -48,7 +48,9 @@
     </div>
 
     <a href="{{ URL::to('roles/create') }}" class="btn btn-success">Add Role</a>
-
+    <a href="{{ url()->previous() }}" class="btn btn-light" style="width: 100%;padding: 15px;margin-top: 15px;">
+            Go back
+        </a>
 </div>
 </div>
 </div>

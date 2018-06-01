@@ -7,6 +7,7 @@ use App\TestRequest;
 use App\Equipment;
 use App\TestRequestsStatus;
 use App\ExpectedResult;
+use App\TestReport;
 use Auth;
 use DB;
 
@@ -26,9 +27,10 @@ class FinishedTestRequestController extends Controller
     public function index() {
     //Get all users and pass it to the view
 
-    $test_requests = TestRequest::all()->where('status_id', '=', 3);
-
-      return view('test_requests.index')->with('testrequests', $test_requests);
+        $testrequests = TestRequest::all()->where('status_id', '=', 3);
+        $test_reports = TestReport::all();
+        // echo $test_reports;
+        return view('test_requests.index', compact('testrequests', 'test_reports'));
     }
 
     public function approve()

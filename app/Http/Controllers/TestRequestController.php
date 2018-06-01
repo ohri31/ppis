@@ -7,6 +7,7 @@ use App\TestRequest;
 use App\Equipment;
 use App\TestRequestsStatus;
 use App\ExpectedResult;
+use App\TestCase;
 use Auth;
 use DB;
 use PDF;
@@ -250,4 +251,19 @@ class TestRequestController extends Controller
         $pdf = PDF::loadView('test_requests.pdf', $data);
         return $pdf->download('test_requests.pdf');
     }
+
+         /**
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function testcases($id)
+    {
+        $test_request= TestRequest::findOrFail($id);
+        $expected_results = ExpectedResult::all()->where('testrequest_id', '=', $test_request->id);
+        $test_cases = TestCase::all()->where('test_request_id', '=', $id);
+        $today = Carbon::now();
+        return view('test_requests.testcases', compact('test_request', 'expected_results', 'today', 'test_cases'));
+    }
+
 }

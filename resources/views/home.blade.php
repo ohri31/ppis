@@ -61,11 +61,7 @@
                                     <a class="btn btn-info  btn-block" href="{{ URL::to('/approvedreports') }}" role="button">View approved test reports</a>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="row form-group">
-                                    <a class="btn btn-info  btn-block" href="{{ URL::to('testreports') }}" role="button">View test reports</a>
-                                </div>
-                            </div>                                                                               
+                                                                                           
                             @endrole 
                             @role('Company')
                             <div class="col">

@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-12 col-lg-offset-1">
             <h1>
-                <i class="fas fa-chart-bar"></i> Test requests
+                <i class="fas fa-chart-bar"></i> Approved and declined test requests
             </h1>
             <hr>
             <div class="table-responsive">
@@ -32,7 +32,12 @@
                                 <td>{{ $tr->equipment->name }}</td>
                                 <td>{{  $tr->created_at  }}</td>
                                 <td>{{ $tr->approvedby->name }}</td>
-                                <td> {{ $tr->status->name}}  </td>
+                                <td> @if ($tr->status->name == "Done")
+                                   <p style="color:green"> {{ $tr->status->name}}  
+                                   <i class="fa fa-check"> </i> </p>
+                                @else
+                                {{ $tr->status->name}}  
+                                @endif</td>
                                 @if($tr->end_date > $today)
                                 <td style="text-align: center; font-weight:bold;"><i class="fa fa-check-circle-o" style="color:green"></i> &nbsp;<b> {{ $tr->end_date }} </b> </td>
                                 @else

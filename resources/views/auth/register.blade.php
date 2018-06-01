@@ -5,7 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header" style="background-color:lightseagreen;">{{ __('Register your company') }}</div>
+                <div class="card-header" style="background-color:lightseagreen; color:white;" >
+                    <i class="fa fa-sign-in"> </i>
+                    {{ __('Register your company') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
