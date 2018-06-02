@@ -47,28 +47,6 @@ INSERT INTO `equipment` (`id`, `name`, `description`, `equipment_type_id`, `crea
 (4, 'Respirator', 'Omogućava mehanizam za disanje pacijentu koji fizički nije u stanju da diše (nedovoljno diše).', 8, '2018-06-01 18:52:00', '2018-06-01 19:20:09'),
 (5, 'Anesteziološka mašina', 'Anesteziološka mašina je medicinski uređaj dizajniran da obezbjedi kontinuirano snabdijevanje medicinskih gasova u mješavini sa preciznomkoncentracijom anestezioloških gasova.', 8, '2018-06-01 18:53:18', '2018-06-01 19:25:39');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `equipment_type`
---
-
-CREATE TABLE `equipment_type` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `equipment_type`
---
-
-INSERT INTO `equipment_type` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Tip 1', '2018-05-08 22:00:00', '2018-05-08 22:00:00'),
-(2, 'Tip 2', '2018-05-07 22:00:00', '2018-05-07 22:00:00');
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `equipment_types`
@@ -114,8 +92,12 @@ CREATE TABLE `expected_results` (
 --
 
 INSERT INTO `expected_results` (`id`, `min_result`, `max_result`, `unit`, `testrequest_id`, `description`, `created_at`, `updated_at`) VALUES
-(1, 1, 5, 'A', 2, 'sfdkaslčfl', '2018-05-28 17:51:46', '2018-05-28 17:51:46'),
-(2, 10, 14, 'd', 0, 'kjadas', '2018-06-01 08:45:50', '2018-06-01 08:45:50');
+(1, -10, 45, '*C', 1, 'Working condition: Temperature', '2018-06-01 21:57:53', '2018-06-01 21:57:53'),
+(2, 220, 240, 'V', 1, 'Power supply', '2018-06-01 21:57:14', '2018-06-01 21:57:14'),
+(3, 0, 3.3, 'V', 2, 'One analog output voltage', '2018-06-01 21:59:54', '2018-06-01 21:59:54'),
+(4, 120, 220, 'V', 2, 'Power line', '2018-06-01 22:00:30', '2018-06-01 22:00:30'),
+(5, 200, 240, 'V', 3, 'Nominal voltage', '2018-06-01 21:59:54', '2018-06-01 21:59:54'),
+(6, 50, 60, 'Hz', 3, 'Mains frequency', '2018-06-01 22:00:30', '2018-06-01 22:00:30');
 
 -- --------------------------------------------------------
 
@@ -340,13 +322,12 @@ CREATE TABLE `test_case` (
 --
 
 INSERT INTO `test_case` (`id`, `name`, `steps`, `test_data`, `actual_results`, `notes`, `status`, `test_request_id`, `test_case_type_id`, `expected_result_id`, `created_at`, `updated_at`) VALUES
-(1, 'CaseName1', 'Steps', 'TestData', '2', NULL, 1, 2, 1, 1, '2018-05-28 18:46:22', '2018-05-28 18:46:22'),
-(2, 'CaseName2', 'Steps', 'TestData', '9', NULL, 0, 2, 1, 1, '2018-05-28 18:48:14', '2018-05-28 18:48:14'),
-(3, 'CaseName3', 'Steps', 'TestData', '10', NULL, 0, 2, 1, 1, '2018-05-28 18:48:59', '2018-05-28 18:48:59'),
-(4, 'TestCaseName', 'Stešs', 'data data', '2', NULL, 1, 2, 1, 1, '2018-05-28 18:51:33', '2018-05-28 18:51:33'),
-(5, 'Name1', 'Steps\r\n1.\r\n2', 'Data', '11', NULL, 0, 2, 2, 1, '2018-05-28 19:27:23', '2018-05-28 19:27:23'),
-(6, 'Name1', 'Steps\r\n1.\r\n2', 'Data', '11', NULL, 0, 2, 2, 1, '2018-05-28 19:46:21', '2018-05-28 19:46:21'),
-(7, 'CASEEE', 'dfdsfs', 'data', '0', 'asds', 0, 2, 1, 1, '2018-05-28 19:52:38', '2018-05-28 19:52:38');
+(1, 'Testing power supply', '1. Turn on equipment\r\n2. Measure\r\n3. Enter test result', 'Defibrilator', '225', 'After testing the power, the result was 225.', 1, 1, 1, 1, '2018-06-01 21:44:32', '2018-06-01 21:44:32'),
+(2, 'Testing temperature', '1. Turn on equipment\r\n2. Measure\r\n3. Enter result data', 'Defibrilator', '-555', 'No notes', 0, 1, 1, 2, '2018-06-01 21:46:24', '2018-06-01 21:46:24'),
+(3, 'Testing power line', '1. Turn on\r\n2. Measure\r\n3. Enter result data', 'Respirator', '122', 'No notes', 1, 2, 1, 3, '2018-06-01 22:08:33', '2018-06-01 22:08:33'),
+(4, 'Testing analog output', '1. Turn on\r\n2. Measure\r\n3. Enter result data', 'Respirator', '5', 'No notes', 0, 2, 1, 4, '2018-06-01 22:09:42', '2018-06-01 22:09:42'),
+(5, 'Testing input voltage AC', '1. Turn on\r\n2. Measure\r\n3. Enter result data', 'EKG', '192', 'No notes', 1, 3, 1, 5, '2018-06-01 22:08:33', '2018-06-01 22:08:33'),
+(6, 'Testing frequency', '1. Turn on\r\n2. Measure\r\n3. Enter result data', 'EKG', '25', 'No notes', 0, 3, 1, 6, '2018-06-01 22:09:42', '2018-06-01 22:09:42');
 
 -- --------------------------------------------------------
 
@@ -366,8 +347,12 @@ CREATE TABLE `test_case_type` (
 --
 
 INSERT INTO `test_case_type` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Type 1', '2018-05-27 22:00:00', '2018-05-27 22:00:00'),
-(2, 'Type 2', '2018-05-27 22:00:00', '2018-05-27 22:00:00');
+(1, 'Functionality Test Case', '2018-06-01 22:00:00', NULL),
+(2, 'User Interface Test Case', '2018-06-01 22:00:00', NULL),
+(3, 'Performance Test Case', '2018-06-01 22:00:00', NULL),
+(4, 'Integration Test Case', '2018-06-01 22:00:00', NULL),
+(5, 'Usability Test Case', '2018-06-01 22:00:00', NULL),
+(6, 'Security Test Case', '2018-06-01 22:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -392,6 +377,16 @@ CREATE TABLE `test_report` (
 -- --------------------------------------------------------
 
 --
+-- Dumping data for table `test_report`
+--
+
+INSERT INTO `test_report` (`id`, `title`, `description`, `date`, `tester_id`, `request_id`, `approved`, `approved_by_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Respirator Report', 'This report contains the results of testing the required device. It is possible to review the description of the test request, the test cases that were applied during testing and the test res', '2018-06-02 00:19:35', 9, 2, 1, 11, 1, '2018-06-01 22:19:35', '2018-06-01 22:22:14');
+
+-- --------------------------------------------------------
+
+
+--
 -- Table structure for table `test_requests`
 --
 
@@ -414,11 +409,9 @@ CREATE TABLE `test_requests` (
 --
 
 INSERT INTO `test_requests` (`id`, `name`, `description`, `equipment_id`, `user_id`, `status_id`, `approved`, `approvedby_id`, `created_at`, `updated_at`, `end_date`) VALUES
-(1, 'dsfsdfds', 'sfdsas', 3, 2, 3, 1, 10, '2018-05-27 20:00:00', '2018-05-31 07:42:34', '2018-05-28 00:00:00'),
-(2, 'Zahtjev', 'Opis zahtjeva', 3, 2, 3, 1, 10, '2018-05-28 15:51:33', '2018-05-28 16:44:45', '2018-05-28 19:51:33'),
-(3, 'Novi', 'Novi test request', 3, 2, 1, 1, 10, '2018-05-31 08:17:52', '2018-06-01 08:47:24', '2018-06-05 00:00:00'),
-(0, 'novizahtjev', 'dassdaasd', 2, 2, 1, 3, 10, '2018-06-01 08:45:41', '2018-06-01 08:50:40', '2018-06-16 00:00:00');
-
+(1, 'Defibrillator test request', 'Defibrillators must be designed and constructed to provide protection against electric shock, excessive temperatures, dust and water in the case of the subject gauges under normal operating c', 2, 2, 2, 1, 10, '2018-06-01 21:56:44', '2018-06-01 22:05:37', '2018-06-30 00:00:00'),
+(2, 'Respirator test request', 'A respirator is a device designed to protect the wearer from inhaling particulate matter, including airborne microorganisms, fumes, vapours and gases.', 4, 2, 3, 1, 10, '2018-06-01 21:59:03', '2018-06-01 22:18:02', '2018-06-30 00:00:00'),
+(3,'Electrocardiograph', 'Electrocardiography (ECG or EKG) is the process of recording the electrical activity of the heart over a period of time using electrodes placed on the skin.', 3, 2, 2, 1, 10, '2018-06-01 21:59:03', '2018-06-01 22:18:02', '2018-06-30 00:00:00');
 -- --------------------------------------------------------
 
 --
@@ -484,11 +477,6 @@ ALTER TABLE `equipment`
   ADD PRIMARY KEY (`id`),
   ADD KEY `equipment_equipment_type_id_foreign` (`equipment_type_id`);
 
---
--- Indexes for table `equipment_type`
---
-ALTER TABLE `equipment_type`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `equipment_types`
@@ -593,12 +581,6 @@ ALTER TABLE `users`
 --
 ALTER TABLE `equipment`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `equipment_type`
---
-ALTER TABLE `equipment_type`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `equipment_types`
